@@ -1,0 +1,72 @@
+/* Importar fuente moderna desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilos generales para la página */
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Cambiar a fuente moderna */
+    background-color: #e0f7fa; /* Fondo celeste claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura de la vista */
+    margin: 0;
+}
+
+/* Estilos del contenedor del login */
+.login-container {
+    background-color: #ffffff; /* Fondo blanco */
+    padding: 20px; /* Espacio alrededor del contenido */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto elevado */
+    width: 300px;
+    text-align: center;
+}
+
+/* Estilos del ícono en la parte superior */
+.icon {
+    margin-bottom: 15px;
+}
+
+/* Estilo del título "Inicio de Sesión" */
+h2 {
+    color: #004774; /* Texto de color celeste oscuro */
+    margin-bottom: 20px;
+    font-weight: 700; /* Texto en negrita */
+}
+
+/* Estilos de las etiquetas y campos de entrada */
+label {
+    display: block;
+    text-align: left;
+    color: #0277bd; /* Color de texto celeste medio */
+    margin-bottom: 5px;
+    font-weight: 700; /* Etiquetas en negrita */
+    font-size: 1rem; /* Tamaño de fuente más grande para las etiquetas */
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b3e5fc; /* Borde celeste claro */
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box; /* Asegura que el padding se mantenga dentro del ancho total */
+    background-color: #e1f5fe; /* Fondo del input celeste muy claro */
+}
+
+/* Estilos del botón de login */
+button {
+    background-color: #03a9f4; /* Color del botón (celeste) */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0288d1; /* Color al pasar el ratón sobre el botón (celeste más oscuro) */
+}
