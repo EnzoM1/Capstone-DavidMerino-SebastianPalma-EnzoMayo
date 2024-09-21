@@ -9,7 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    padding-top: 60px; /* Espacio para el navbar fijo */
+    padding-top: 70px; /* Espacio para el navbar fijo */
 }
 
 /* Estilo del navbar */
@@ -62,6 +62,30 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    margin-top: 30px; /* Espacio entre el navbar y el contenedor de login */
+}
+
+/* Alinear inputs en el contenedor de login */
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px); /* Restar el padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #b3e5fc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #e1f5fe;
+    box-sizing: border-box; /* Incluye padding y border en el width */
+}
+
+/* Estilos de las etiquetas y campos de entrada */
+label {
+    display: block;
+    width: calc(100% - 20px); /* Alinear el ancho con el input */
+    text-align: left; /* Alinear el texto a la izquierda */
+    color: #0277bd;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 /* Estilos del ícono en la parte superior */
@@ -74,26 +98,6 @@ h2 {
     color: #004774;
     margin-bottom: 20px;
     font-weight: 700;
-}
-
-/* Estilos de las etiquetas y campos de entrada */
-label {
-    display: block;
-    text-align: left;
-    color: #0277bd;
-    margin-bottom: 5px;
-    font-weight: 700;
-    font-size: 1rem;
-}
-
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #b3e5fc;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #e1f5fe;
 }
 
 /* Estilos del botón de login */
