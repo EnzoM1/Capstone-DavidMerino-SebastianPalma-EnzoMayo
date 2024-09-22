@@ -4,12 +4,29 @@
 /* Estilos generales para la página */
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    background-color: #e0f7fa;
+    background-image: url('../img/b3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding-top: 70px; /* Espacio para el navbar fijo */
+    justify-content: center;
+    position: relative; /* Necesario para el pseudo-elemento */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(85, 85, 85, 0.5); /* Ajusta el color y la opacidad aquí */
+    z-index: 0; /* Asegúrate de que esté detrás del contenido */
 }
 
 /* Estilo del navbar */
@@ -56,13 +73,13 @@ body {
 
 /* Estilos del contenedor del login */
 .login-container {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco de transparencia */
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
-    margin-top: 30px; /* Espacio entre el navbar y el contenedor de login */
+    z-index: 1; /* Asegúrate de que esté delante del pseudo-elemento */
 }
 
 /* Alinear inputs en el contenedor de login */
