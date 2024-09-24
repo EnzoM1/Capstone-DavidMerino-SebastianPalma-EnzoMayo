@@ -83,10 +83,17 @@ body::before {
 }
 
 /* Alinear inputs en el contenedor de login */
+.input-group {
+    display: flex; /* Usa flexbox para alinear etiqueta y campo */
+    flex-direction: column; /* Coloca etiqueta sobre el input */
+    align-items: flex-start; /* Alinear a la izquierda */
+    width: 100%; /* Para ocupar todo el ancho del contenedor */
+    margin-bottom: 15px; /* Espaciado entre los grupos */
+}
+
 input[type="text"], input[type="password"] {
     width: calc(100% - 20px); /* Restar el padding */
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #b3e5fc;
     border-radius: 8px;
     font-size: 16px;
@@ -97,7 +104,6 @@ input[type="text"], input[type="password"] {
 /* Estilos de las etiquetas y campos de entrada */
 label {
     display: block;
-    width: calc(100% - 20px); /* Alinear el ancho con el input */
     text-align: left; /* Alinear el texto a la izquierda */
     color: #0277bd;
     margin-bottom: 5px;
