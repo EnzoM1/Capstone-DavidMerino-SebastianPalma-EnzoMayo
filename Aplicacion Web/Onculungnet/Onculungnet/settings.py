@@ -74,6 +74,13 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# Creacion de la base de datos, cambiamos de sqlite3 a MySql para poder migrarla a AWS una vez tengamos el host.
+# Cosas como el name y password son cosas momentaneas que una vez en el host modificaremos.
+# La base de datos por ahora se encuentra en el tipo default pero se puede dejar la default y agregar otra, no hay problema.
+# Utilizamos MySQL server y MySQL Workbench para la base de datos.
+# MySQL Workbench nos ayuda a visualizar cambios y hacer consultas a la base de datos.
+# El Host se cambia una vez tengamos el servidor al que vamos a migrar.
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
