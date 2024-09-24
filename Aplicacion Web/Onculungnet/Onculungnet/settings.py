@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Onco',
+        'USER': 'root',  # O el usuario que hayas creado
+        'PASSWORD': '310303',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
