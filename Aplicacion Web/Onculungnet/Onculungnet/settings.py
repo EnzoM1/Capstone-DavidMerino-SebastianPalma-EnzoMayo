@@ -81,14 +81,35 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 # MySQL Workbench nos ayuda a visualizar cambios y hacer consultas a la base de datos.
 # El Host se cambia una vez tengamos el servidor al que vamos a migrar.
 
+## TUTORIAL INSTALACION MYSQL PASO A PASO
+# Mi contraseña de la base de datos es 310303 y el nombre es Onco.
+# Primero te descargas el instalador de MysSQL https://dev.mysql.com/downloads/installer/
+# Elegir la que dice (mysql-installer-web-community-8.0.39.0.msi) tiene 2.1M de descargas o algo así, es el primero de los 2.
+# Es una herramienta para instalar varias cosas de MySQL pero no unico que necesitas es MySQL server y el MySQL workbench.
+
+## CREACION DE LA BASE DE DATOS PASO A PASO
+# Cuando instalas MySQL te pide poner una contraseña, esa debes usar para ingresar al CMD de MySQL se llama MySQL command line client.
+# si no te pide nada usa esto mysql -u root -p para ingresar.
+# Si te pide contraseña normalmente con apretar enter deberia bastar.
+# Luego escribir = CREATE DATABASE nombre_de_tu_base_de_datos; 
+# De nombre le puse Onco.
+
+## INSTALACIONES QUE SE DEBE TENER HECHAS PARA QUE FUNCIONE LA BASE DE DATOS
+# pip install mysqlclient.
+
+# PARA FINALIZAR 
+# Usa el python manage.py makemigrations
+# Usa el python manage.py migrate 
+# para guardar los cambios.
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Onco',
-        'USER': 'root',  # O el usuario que hayas creado
-        'PASSWORD': '310303',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'Onco',  # Nombre de la base de datos, depende de el que creó la base de datos.
+        'USER': 'root',  # O el usuario que hayas creado.
+        'PASSWORD': '310303', # Contraseña que establecí cuando instalas MySQL. 
+        'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
+        'PORT': '3306', # Puerto predeterminado para MySQL.
     }
 }
 
