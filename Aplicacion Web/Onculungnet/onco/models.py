@@ -1,6 +1,13 @@
 from django.db import models
+from django.conf import settings
+import joblib  #es una libreria que se usa para cargar el modelo
+import pandas as pd
 
-# Create your models here.
+#los demas imports quizan no sean necesarios se pueden eliminar en un futuro para tener un codigo mas clean
+
+# Cargar el modelo desde el archivo
+lr_model = joblib.load('onco/modelos/lr_model.pkl')
+
 
 # Creamos la clase PatientData que nos sirve para guardar los datos del formulario.
 # name = nombre.
