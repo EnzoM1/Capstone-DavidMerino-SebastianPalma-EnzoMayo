@@ -1,140 +1,134 @@
-/* Importar fuente moderna desde Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-/* Estilos generales para la página */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    background-image: url('../img/b3.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative; /* Necesario para el pseudo-elemento */
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(85, 85, 85, 0.5); /* Ajusta el color y la opacidad aquí */
-    z-index: 0; /* Asegúrate de que esté detrás del contenido */
-}
-
-/* Estilo del navbar */
-.navbar {
-    background-color: #004774;
-    width: 100%;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar ul {
-    list-style: none;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    height: 100vh;
+    background: url( '../img/b3.jpg') no-repeat center center/cover;
 }
 
-.navbar ul li {
-    margin: 0;
-}
-
-.navbar ul li a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0288d1; /* Color del botón */
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    text-decoration: none;
-    border-radius: 8px; /* Bordes redondeados */
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.navbar ul li a:hover {
-    background-color: #03a9f4; /* Color del botón al pasar el ratón */
-}
-
-/* Estilos del contenedor del login */
-.login-container {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con un poco de transparencia */
-    padding: 20px;
+.container {
+    display: flex;
+    width: 800px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.left-section {
+    background: url( '../img/tapiz_index.jpg');
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.left-section h1 {
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.left-section p {
+    color: #fff;
+    font-size: 16px;
     text-align: center;
-    z-index: 1; /* Asegúrate de que esté delante del pseudo-elemento */
+    max-width: 250px;
 }
 
-/* Alinear inputs en el contenedor de login */
-.input-group {
-    display: flex; /* Usa flexbox para alinear etiqueta y campo */
-    flex-direction: column; /* Coloca etiqueta sobre el input */
-    align-items: flex-start; /* Alinear a la izquierda */
-    width: 100%; /* Para ocupar todo el ancho del contenedor */
-    margin-bottom: 15px; /* Espaciado entre los grupos */
+.left-section .logo {
+    margin-bottom: 30px;
 }
 
-input[type="text"], input[type="password"] {
-    width: calc(100% - 20px); /* Restar el padding */
-    padding: 10px;
-    border: 1px solid #b3e5fc;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #e1f5fe;
-    box-sizing: border-box; /* Incluye padding y border en el width */
+.right-section {
+    flex: 1;
+    background-color: rgba(46, 59, 78, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
 }
 
-/* Estilos de las etiquetas y campos de entrada */
-label {
-    display: block;
-    text-align: left; /* Alinear el texto a la izquierda */
-    color: #0277bd;
-    margin-bottom: 5px;
-    font-weight: 700;
-    font-size: 1rem;
-}
-
-/* Estilos del ícono en la parte superior */
-.icon {
-    margin-bottom: 15px;
-}
-
-/* Estilo del título "Inicio de Sesión" */
-h2 {
-    color: #004774;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-/* Estilos del botón de login */
-button {
-    background-color: #03a9f4;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
+.login-box {
     width: 100%;
+    max-width: 300px;
+}
+
+.login-box h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box input {
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    background-color: #3b4b61;
+    color: #fff;
+}
+
+.login-box input::placeholder {
+    color: #b5b5b5;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.remember-me input {
+    margin-right: 10px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #3dd6c1;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0288d1;
+    background-color: #34c5ad;
+}
+
+.forgot-password {
+    color: #3dd6c1;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sign-up {
+    color: #b5b5b5;
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 14px;
 }
