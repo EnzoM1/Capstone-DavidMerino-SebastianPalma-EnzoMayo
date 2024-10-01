@@ -105,9 +105,9 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'OncoLung',  # Nombre de la base de datos, depende de el que creó la base de datos. 
+        'NAME': 'Onco',  # Nombre de la base de datos, depende de el que creó la base de datos. 
         'USER': 'root',  # O el usuario que hayas creado.
-        'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
+        'PASSWORD': 'admin', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
         'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
         'PORT': '3306', # Puerto predeterminado para MySQL.
     }
@@ -154,3 +154,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Configuración del correo electrónico
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '@gmail.com'  # Cambia esto por tu correo
+EMAIL_HOST_PASSWORD = 'ihvsgeyqaehpapup'  # Cambia esto por tu contraseña de correo
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

@@ -35,3 +35,11 @@ def predict_probability(request):
     else:
         form = PatientForm()
     return render(request, 'form.html', {'form': form})
+
+
+
+def PasswordResetView(request):
+    return render(request, 'PasswordResetView.html')
+
+def PasswordResetConfirmView(request):
+    return render(request, 'PasswordResetConfirmView.html')
