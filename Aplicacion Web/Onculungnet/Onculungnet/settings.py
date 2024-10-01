@@ -105,9 +105,9 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Onco',  # Nombre de la base de datos, depende de el que creó la base de datos. 
+        'NAME': 'OncoLung',  # Nombre de la base de datos, depende de el que creó la base de datos. 
         'USER': 'root',  # O el usuario que hayas creado.
-        'PASSWORD': 'admin', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
+        'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
         'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
         'PORT': '3306', # Puerto predeterminado para MySQL.
     }

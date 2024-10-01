@@ -3,6 +3,7 @@ from django.conf import settings
 import joblib  #es una libreria que se usa para cargar el modelo
 import pandas as pd
 
+
 #los demas imports quizan no sean necesarios se pueden eliminar en un futuro para tener un codigo mas clean
 
 # Cargar el modelo desde el archivo
@@ -46,3 +47,7 @@ class PatientData(models.Model):
     ANXYELFIN = models.IntegerField()
     probability = models.CharField(null=True, blank=True,max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class user(models.Model):
+    username = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
