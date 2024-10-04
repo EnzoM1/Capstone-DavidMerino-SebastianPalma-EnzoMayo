@@ -30,6 +30,13 @@
                     <button type="submit">Iniciar sesión</button>
                     <a href="" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 </form>
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
                 <a href="" class="sign-up">Regístrate</a>
             </div>
         </div>

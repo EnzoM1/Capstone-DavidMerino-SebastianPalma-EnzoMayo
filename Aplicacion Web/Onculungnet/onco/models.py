@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 import joblib  #es una libreria que se usa para cargar el modelo
 import pandas as pd
+from django.contrib.auth.hashers import make_password, check_password
 
 
 #los demas imports quizan no sean necesarios se pueden eliminar en un futuro para tener un codigo mas clean
@@ -48,6 +49,14 @@ class PatientData(models.Model):
     probability = models.CharField(null=True, blank=True,max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class user(models.Model):
-    username = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
+class Usuario(models.Model):
+    nombre = models.CharField(max_length=255, unique=True)
+    contra = models.CharField(max_length=255)
+
+    #esto hace que hashee la contraseña cuando se crea pero de momento no
+    def set_password(self, raw_password):
+        self.contraseña = make_password(raw_password)
+        self.save()
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.contraseña)

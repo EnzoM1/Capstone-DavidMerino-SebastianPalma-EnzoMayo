@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 #tema urls en el futuro protegerlas para que no ingresen escribiendola manual
 
 urlpatterns = [
-    path('',views.saludo),
+    path('',views.login,name="login"),
     path('form/',views.predict_probability, name="form"), 
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     # Vista que informa al usuario que se ha enviado un correo
