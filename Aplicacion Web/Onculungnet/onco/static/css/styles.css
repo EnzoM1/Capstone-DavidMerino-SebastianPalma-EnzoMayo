@@ -6,16 +6,13 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url( '../img/b3.jpg') no-repeat center center/cover;
+    background: url('../img/b3.jpg') no-repeat center center/cover;
 }
 
 .container {
     display: flex;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 400px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -24,30 +21,25 @@ body {
 }
 
 .left-section {
-    background: url( '../img/tapiz_index.jpg');
+    background: url('../img/tapiz_index.jpg');
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    color: #fff; /* Color para el texto */
 }
 
 .left-section h1 {
-    color: #fff;
     font-size: 36px;
     margin-bottom: 10px;
 }
 
 .left-section p {
-    color: #fff;
     font-size: 16px;
     text-align: center;
     max-width: 250px;
-}
-
-.left-section .logo {
-    margin-bottom: 30px;
 }
 
 .right-section {
@@ -71,11 +63,6 @@ body {
     text-align: center;
 }
 
-.login-box form {
-    display: flex;
-    flex-direction: column;
-}
-
 .login-box input {
     padding: 12px 20px;
     margin-bottom: 15px;
@@ -93,26 +80,24 @@ body {
 .remember-me {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: center; /* Centra la casilla */
     color: #fff;
-}
-
-.remember-me input {
-    margin-right: 10px;
+    margin-bottom: 25px; /* Aumenta el margen para separación */
 }
 
 button {
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
-    background-color: #3dd6c1;
-    color: #fff;
+    background-color: #a5a5a5; /* Color más claro para el botón */
+    color: #fff; /* Cambiar el color del texto a blanco */
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
 }
 
 button:hover {
-    background-color: #34c5ad;
+    background-color: #84c2d3; /* Color más intenso al pasar el mouse */
 }
 
 .forgot-password {
@@ -131,4 +116,23 @@ button:hover {
     margin-top: 20px;
     text-decoration: none;
     font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        height: auto;
+    }
+
+    .left-section {
+        display: none; /* Ocultar la sección izquierda en dispositivos pequeños */
+    }
+
+    .right-section {
+        padding: 20px;
+    }
+
+    .login-box {
+        max-width: 90%;
+    }
 }
