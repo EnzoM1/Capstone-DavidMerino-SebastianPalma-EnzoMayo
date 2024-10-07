@@ -49,14 +49,3 @@ class PatientData(models.Model):
     probability = models.CharField(null=True, blank=True,max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=255, unique=True)
-    contra = models.CharField(max_length=255)
-
-    #esto hace que hashee la contraseña cuando se crea pero de momento no
-    def set_password(self, raw_password):
-        self.contraseña = make_password(raw_password)
-        self.save()
-
-    def check_password(self, raw_password):
-        return check_password(raw_password, self.contraseña)
