@@ -22,10 +22,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Establece la clave secreta de Django a partir de la variable de entorno 'SECRET_KEY'.
+# Si la variable no está definida, se usará un valor por defecto (que no debe ser usado en producción).
+# En entornos de producción, asegúrate de establecer 'SECRET_KEY' como una variable de entorno segura
+# para proteger la aplicación de ataques y garantizar su correcto funcionamiento.
+
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Determina el modo DEBUG basado en si la aplicación se está ejecutando en Render.
+# Si la variable de entorno 'RENDER' no está presente, significa que estamos en un entorno de desarrollo,
+# por lo tanto, DEBUG estará activado (True). En caso contrario, DEBUG estará desactivado (False) en producción.
+# Advertencia: DEBUG debe estar en False en producción para evitar la exposición de información sensible.
+
 DEBUG = 'RENDER' not in os.environ  
+
+# Configura los hosts permitidos (ALLOWED_HOSTS) en Django.
+# En un entorno de desarrollo, ALLOWED_HOSTS puede estar vacío.
+# En producción (como en Render), Django obtiene el nombre de host externo
+# a través de la variable de entorno RENDER_EXTERNAL_HOSTNAME, permitiendo el acceso al dominio correcto.
+# Esta configuración es crucial para prevenir accesos no autorizados a la aplicación.
 
 ALLOWED_HOSTS = []
 
@@ -75,6 +91,11 @@ TEMPLATES = [
     },
 ]
 
+# Define el punto de entrada WSGI para el proyecto Django.
+# El archivo 'wsgi.py' en el directorio del proyecto Onculungnet expone la aplicación WSGI,
+# que permite a Django comunicarse con servidores web como Gunicorn o uWSGI.
+# Este es un paso esencial para el despliegue en producción.
+
 WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 
@@ -111,6 +132,12 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 # Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Configura la conexión a la base de datos MySQL para el proyecto Django.
+# Utiliza dj_database_url.config para cargar las credenciales desde la cadena de conexión
+# y establece un tiempo máximo de reutilización de la conexión de 600 segundos (conn_max_age=600).
+# Si no se proporcionan variables de entorno para la base de datos, se utiliza la configuración predeterminada.
+# En este caso: mysql://root:1234@localhost:3306/Onco2
+
 DATABASES = {
     'default': dj_database_url.config(
         default='mysql://root:1234@localhost:3306/Onco2',
@@ -119,13 +146,13 @@ DATABASES = {
 }
 
 
-        # default= 'MySQLdb://USER:PASSWORD@HOST:PORT/NAME',
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'Onco2',  # Nombre de la base de datos, depende de el que creó la base de datos. 
-        #'USER': 'root',  # O el usuario que hayas creado.
-        #'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
-        #'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
-        #'PORT': '3306', # Puerto predeterminado para MySQL.
+# default= 'MySQL://USER:PASSWORD@HOST:PORT/NAME',
+#'ENGINE': 'django.db.backends.mysql',
+#'NAME': 'Onco2',  # Nombre de la base de datos, depende de el que creó la base de datos. 
+#'USER': 'root',  # O el usuario que hayas creado.
+#'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
+#'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
+#'PORT': '3306', # Puerto predeterminado para MySQL.
 
 
 # Password validation
@@ -161,6 +188,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+# Configuración para el manejo de archivos estáticos en Django.
+# En producción (cuando DEBUG es False), los archivos estáticos se copian al directorio 'staticfiles'.
+# Además, se utiliza WhiteNoise para comprimir los archivos estáticos y renombrarlos de manera única
+# para permitir el cacheo a largo plazo en los navegadores.
+# Comando utilizado para recopilar archivos estáticos: python manage.py collectstatic
 
 STATIC_URL = 'static/'
 
