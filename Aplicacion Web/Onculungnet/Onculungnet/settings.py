@@ -107,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Onco2',  # Nombre de la base de datos, depende de el que creó la base de datos. 
         'USER': 'root',  # O el usuario que hayas creado.
-        'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
+        'PASSWORD': 'admin', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
         'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
         'PORT': '3306', # Puerto predeterminado para MySQL.
     }
