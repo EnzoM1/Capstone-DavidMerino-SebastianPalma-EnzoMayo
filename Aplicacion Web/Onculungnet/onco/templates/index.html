@@ -16,12 +16,10 @@
         <div class="row w-100">
             <div class="col-md-6 left-section d-none d-md-flex">
                 <div class="logo mb-4">
-                    <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
+                    <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto;">
                 </div>
                 <h1>OncoLungNet</h1>   
-                <p style="font-family: Arial, sans-serif; font-size: 18px; font-style: italic; text-align: justify; padding: 20px;">
-                    Detectar el cáncer de pulmón a tiempo es posible. Elige cuidar tu salud y abre la puerta a un futuro más saludable y pleno.
-                </p>
+                <p>Detectar el cáncer de pulmón a tiempo es posible. Elige cuidar tu salud y abre la puerta a un futuro más saludable y pleno.</p>
             </div>
             <div class="col-md-6 right-section">
                 <div class="login-box">
@@ -32,14 +30,12 @@
                         <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
                         <div class="remember-me form-check mb-3">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember" style="margin-left: 10px;">Recordarme</label>
+                            <label class="form-check-label" for="remember">Recordarme</label>
                         </div>
-                        <button type="submit" class="btn" 
-                        style="background-color: #50dde2; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;" 
-                        onmouseover="this.style.backgroundColor='#fff'; this.style.color='#50dde2';" 
-                        onmouseout="this.style.backgroundColor='#50dde2'; this.style.color='#fff';">
-                        Iniciar sesión
-                    </button>
+                        <button type="submit" class="btn" style=" background-color: #50dde2; /* Color más claro para el botón */
+                        color: #fff; /* Cambiar el color del texto a blanco */
+                        cursor: pointer;
+                        transition: background-color 0.3s;">Iniciar sesión</button>
                         <a href="" class="forgot-password">¿Olvidaste tu contraseña?</a>
                     </form>
                     {% if messages %}
