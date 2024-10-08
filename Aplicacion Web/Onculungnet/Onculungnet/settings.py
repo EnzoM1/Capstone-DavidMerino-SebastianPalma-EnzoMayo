@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import dj_database_url
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v7$qaq=r297vmo0sz6_f-#a$7ax)g%gwzf+wf#@i!)i^+08+i9'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'RENDER' not in os.environ  
 
 ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -41,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -102,16 +109,23 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 # Usa el python manage.py migrate 
 # para guardar los cambios.
 
+# Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Onco2',  # Nombre de la base de datos, depende de el que creó la base de datos. 
-        'USER': 'root',  # O el usuario que hayas creado.
-        'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
-        'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
-        'PORT': '3306', # Puerto predeterminado para MySQL.
-    }
+    'default': dj_database_url.config(
+        default='mysql://root:1234@localhost:3306/Onco2',
+        conn_max_age=600
+    )
 }
+
+
+        # default= 'MySQLdb://USER:PASSWORD@HOST:PORT/NAME',
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'Onco2',  # Nombre de la base de datos, depende de el que creó la base de datos. 
+        #'USER': 'root',  # O el usuario que hayas creado.
+        #'PASSWORD': '1234', # Contraseña que establecí cuando instalas MySQL. tu contraseña deivi "310303"
+        #'HOST': 'localhost', # Host local, se puede cambiar una vez tengamos el servidor.
+        #'PORT': '3306', # Puerto predeterminado para MySQL.
 
 
 # Password validation
@@ -149,6 +163,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 LOGIN_URL = 'inicio' #es donde te redirige si no te has logeado
 
 # Default primary key field type

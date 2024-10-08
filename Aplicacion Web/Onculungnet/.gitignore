@@ -6,3 +6,6 @@ __pycache__/
 
 # Ignorar archivos de VS Code
 .vscode/
+
+db.sqlite3
+
