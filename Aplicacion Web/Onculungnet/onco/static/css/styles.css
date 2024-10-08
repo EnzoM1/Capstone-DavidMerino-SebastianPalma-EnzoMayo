@@ -13,15 +13,14 @@ body {
     display: flex;
     width: 100%;
     max-width: 800px;
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0.1);
+    height: 100vh; /* Asegura que la altura de la sección ocupe toda la pantalla */
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .left-section {
-    background: url('../img/tapiz_index.jpg');
+    background-color: #a8e1f3; /* Color celeste claro */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -29,6 +28,11 @@ body {
     align-items: center;
     padding: 20px;
     color: #fff; /* Color para el texto */
+    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.left-section:hover {
+    background-color: #4b4b4b; /* Color gris oscuro al pasar el mouse */
 }
 
 .left-section h1 {
@@ -37,9 +41,10 @@ body {
 }
 
 .left-section p {
-    font-size: 16px;
-    text-align: center;
-    max-width: 250px;
+    font-size: 18px; /* Asegura un tamaño de fuente más grande */
+    text-align: justify; /* Justificación del texto */
+    padding: 20px;
+    font-style: italic; /* Texto en cursiva */
 }
 
 .right-section {
@@ -89,7 +94,7 @@ button {
     padding: 12px 20px;
     border: none;
     border-radius: 25px;
-    background-color: #a5a5a5; /* Color más claro para el botón */
+    background-color: #50dde2; /* Color más claro para el botón */
     color: #fff; /* Cambiar el color del texto a blanco */
     cursor: pointer;
     transition: background-color 0.3s;
@@ -121,7 +126,7 @@ button:hover {
 /* Media Queries */
 @media (max-width: 768px) {
     .container {
-        height: auto;
+        height: auto; /* Ajustar la altura en pantallas pequeñas */
     }
 
     .left-section {
@@ -135,4 +140,23 @@ button:hover {
     .login-box {
         max-width: 90%;
     }
+}
+
+.texto-elegante {
+    font-style: italic; /* Texto en cursiva */
+    text-align: justify; /* Justificación del texto */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #ddd; /* Borde sutil */
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.invert-image {
+    transition: filter 0.3s ease; /* Transición suave */
+}
+
+.invert-image:hover {
+    filter: invert(1); /* Invierte los colores */
 }
