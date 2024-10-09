@@ -82,17 +82,22 @@ def predict_probability(request):
             patient_data = form.cleaned_data
             # Crear un dataframe con los datos del paciente
             patient_df = pd.DataFrame([patient_data])
+            
             # Seleccionar las características correctas
-            selected_features = patient_df[['YELLOW_FINGERS', 'ANXIETY', 'PEER_PRESSURE', 'CHRONIC_DISEASE', 
-                                 'FATIGUE', 'ALLERGY', 'WHEEZING', 'ALCOHOL_CONSUMING', 
-                                 'COUGHING', 'SWALLOWING_DIFFICULTY', 'CHEST_PAIN','ANXYELFIN']]
+            selected_features = patient_df[['Dedos_amarillos', 'Ansiedad', 'Presión_de_pares', 'Enfermedad_crónica', 
+                                            'Fatiga', 'Alergia', 'Sibilancias', 'Consumo_de_alcohol', 
+                                            'Tos', 'Dificultad_para_tragar', 'Dolor_en_el_pecho']]
+            
+            # Ajustar los nombres de las columnas para que coincidan con los del modelo entrenado
+            selected_features.columns = selected_features.columns.str.replace(' ', '_')  # Reemplaza espacios por guiones bajos
+
             # Predecir la probabilidad de cáncer
             probability = lr_model.predict_proba(selected_features)[:, 1][0]
+            
             # Convertir la probabilidad a porcentaje entero
             probability_percentage = "{}%".format(int(round(probability * 100)))
             
-            
-            #guardar los datos del paciente en un nuevo modelo y la base de datos
+            # Guardar los datos del paciente en un nuevo modelo y la base de datos
             patient_data_obj = PatientData(**patient_data)
             patient_data_obj.probability = probability_percentage
             patient_data_obj.save()
