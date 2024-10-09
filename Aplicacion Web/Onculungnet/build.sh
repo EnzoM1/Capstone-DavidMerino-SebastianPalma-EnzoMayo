@@ -15,4 +15,6 @@ python manage.py collectstatic --no-input
 
 # Aplica las migraciones de base de datos, sincronizando la estructura de la base de datos
 # con los cambios realizados en los modelos de la aplicación.
+python manage.py makemigrations
+
 python manage.py migrate
