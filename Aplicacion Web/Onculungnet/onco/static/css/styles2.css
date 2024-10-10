@@ -1,0 +1,245 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('../img/b3.jpg') no-repeat center center/cover;
+}
+
+/* Estilo para el sidebar */
+.sidebar {
+    height: 100%;
+    width: 187px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    overflow-x: hidden;
+    transition: width 0.5s ease-in-out;
+    padding-top: 10px;
+}
+
+.sidebar.minimized {
+    width: 80px;
+}
+
+.sidebar a {
+    padding: 10px;
+    margin: 0;
+    height: 180px; /* Adjust height for better proportion */
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth background and scaling */
+}
+
+.sidebar a:hover {
+    background-color: #495057; /* A softer hover color */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.minimize-btn {
+    color: white;
+    font-size: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.minimize-btn-container {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.sidebar.minimized .sidebar-text {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 0;
+    visibility: hidden;
+}
+
+.sidebar .sidebar-text {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar i {
+    min-width: 30px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.sidebar.minimized i {
+    margin-right: 0;
+}
+
+/* Modificar tamaño del botón de cerrar sesión */
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: calc(100% - 5px);
+    margin: 0 5px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    font-size: 12px;
+    height: 60px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for button */
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* A slightly darker shade for hover */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+.sidebar.minimized .logout-btn .sidebar-text {
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, width 0s 0.5s;
+}
+
+.logout-btn .sidebar-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Asegurarse de que el sidebar se despliegue siempre en pantallas pequeñas */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+    }
+
+    .sidebar .sidebar-text {
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+    }
+}
+
+/* Mantener el sidebar visible en pantallas grandes */
+@media (min-width: 769px) {
+    .sidebar {
+        width: 187px;
+    }
+}
+
+/* Ajustar el tamaño del formulario y reducir márgenes */
+.form-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Optimizar espacio vertical y centrar el formulario */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+.form-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.form-container form {
+    padding: 15px;
+}
+
+.form-container button {
+    padding: 10px;
+}
+
+/* Estilo para el contenedor del formulario */
+.form-container {
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 50px auto; /* Centrar el formulario vertical y horizontalmente */
+    padding: 20px; /* Espacio interno */
+    background-color: #fff; /* Color de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Estilo para el título del formulario */
+.form-container h2 {
+    text-align: center; /* Centrar el texto */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para los inputs y textos */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"],
+.form-container textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espacio interno */
+    margin-bottom: 15px; /* Espacio entre inputs */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra interna */
+}
+
+/* Estilo para los checkboxes generados desde Django */
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Espacio entre checkboxes */
+}
+
+.form-check label {
+    margin-left: 10px; /* Espacio a la izquierda de la etiqueta */
+    color: #333; /* Color del texto */
+}
+
+/* Asegurarse de que el contenedor del checkbox ocupe todo el ancho */
+.form-check {
+    width: 100%; /* Ancho completo */
+}
+
+/* Aumentar el tamaño del checkbox */
+.form-check input[type="checkbox"] {
+    width: 20px; /* Ancho del checkbox */
+    height: 20px; /* Altura del checkbox */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el checkbox */
+}
+
+/* Personalización de checkboxes */
+.form-check-input:checked {
+    background-color: #007bff; /* Color de fondo cuando está seleccionado */
+    border-color: #007bff; /* Color del borde cuando está seleccionado */
+}
+
+.form-check-input:focus {
+    outline: none; /* Quitar el borde por defecto en el foco */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Añadir sombra en el foco */
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+    color: #dc3545; /* Color rojo para mensajes de error */
+    font-size: 14px; /* Tamaño de fuente */
+    margin-top: -10px; /* Espacio negativo para ajustar la posición */
+}
