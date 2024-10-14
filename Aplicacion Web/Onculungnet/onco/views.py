@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseForbidden
 from .models import lr_model, PatientData
 from django.contrib.auth.models import User #es un modelo de usuario que no fue necesario crear porque ya lo tenia
 from django.contrib.auth import login, logout, authenticate #temas de autenticacion
-from .forms import PatientForm
+from .forms import PatientForm,CustomUserCreationForm 
 from django.contrib import messages #esto tira los mensajes
 import pandas as pd
 from django.contrib.auth.forms import UserCreationForm #este es un form que trae el django para guardar los users
@@ -29,20 +29,17 @@ def vistaAdmin(request):
 
 def register(request):
     if request.method == 'GET':
-        return render(request, 'admin/register.html', {"form": UserCreationForm})
+        return render(request, 'admin/register.html', {"form": CustomUserCreationForm()})
     else:
-
-        if request.POST["password1"] == request.POST["password2"]:
-            try:
-                user = User.objects.create_user(
-                    request.POST["username"], password=request.POST["password1"])
-                user.save()
-                login(request, user)
-                return redirect('inicio')
-            except IntegrityError:
-                return render(request, 'admin/register.html', {"form": UserCreationForm, "error": "Username already exists."})
-
-        return render(request, 'admin/register.html', {"form": UserCreationForm, "error": "Passwords did not match."})
+        # Crear una instancia del formulario con los datos POST
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('inicio')
+        else:
+            # Si el formulario no es válido, devuelve el formulario con errores
+            return render(request, 'admin/register.html', {"form": form, "error": "Formulario inválido."})
 
 
 

@@ -140,7 +140,7 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='mysql://root:admin@localhost:3306/Onco2',
+        default='mysql://root:1234@localhost:3306/Onco2',
         conn_max_age=600
     )
 }
@@ -216,6 +216,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = '@gmail.com'  # Cambia esto por tu correo
-EMAIL_HOST_PASSWORD = 'ihvsgeyqaehpapup'  # Cambia esto por tu contraseña de correo
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_USER = 'oncolungnet@gmail.com'
+EMAIL_HOST_PASSWORD = 'udei xccr diro ptfd'
+DEFAULT_FROM_EMAIL = 'oncolungnet@gmail.com'
+
+#clave aplicacion
+#udei xccr diro ptfd

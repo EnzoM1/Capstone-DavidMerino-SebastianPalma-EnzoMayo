@@ -1,6 +1,8 @@
 from django import forms
 from .models import PatientData
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 #esto basicamente trae el modelo de models luego se crea una clase llamada patienform que vendria a ser el formulario
 
@@ -99,3 +101,24 @@ class PatientForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-select'}),
         initial=None
     )
+
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, help_text="Requerido. Ingrese una dirección de correo válida.")
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Este correo electrónico ya está registrado.")
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user

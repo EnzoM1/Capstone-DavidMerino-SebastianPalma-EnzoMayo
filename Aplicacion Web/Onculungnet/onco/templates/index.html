@@ -40,7 +40,7 @@
                         onmouseout="this.style.backgroundColor='#50dde2'; this.style.color='#fff';">
                         Iniciar sesión
                     </button>
-                        <a href="" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="{% url 'password_reset' %}" class="forgot-password">¿Olvidaste tu contraseña?</a>
                     </form>
                     {% if messages %}
                         <ul class="list-unstyled mt-3">

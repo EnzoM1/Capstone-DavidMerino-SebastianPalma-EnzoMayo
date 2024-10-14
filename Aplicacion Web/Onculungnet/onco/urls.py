@@ -6,13 +6,19 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('',views.inicio,name="inicio"),
     path('form/',views.predict_probability, name="form"), 
+    
+    # URL para solicitar el restablecimiento de contraseña
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    # Vista que informa al usuario que se ha enviado un correo
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),  
-    # Vista que contiene el formulario para restablecer la contraseña usando el token enviado
+    
+    # URL que se muestra cuando el email ha sido enviado
+    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    
+    # URL para ingresar una nueva contraseña, incluye el token único que Django genera
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    # Vista que informa al usuario que la contraseña ha sido restablecida exitosamente
+    
+    # URL que confirma que la contraseña ha sido cambiada exitosamente
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    
     path('logout/',views.cerrarSesion,name="logout"),
 
     #admin view
