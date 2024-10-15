@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes</title>
+</head>
+<body>
+    <h1>Lista de Pacientes y Probabilidades de Cáncer</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Dedos Amarillos</th>
+                <th>Ansiedad</th>
+                <th>Presión de Pares</th>
+                <th>Enfermedad Crónica</th>
+                <th>Fatiga</th>
+                <th>Alergia</th>
+                <th>Sibilancias</th>
+                <th>Consumo de Alcohol</th>
+                <th>Tos</th>
+                <th>Dificultad para Tragar</th>
+                <th>Dolor en el Pecho</th>
+                <th>Probabilidad de Cáncer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.Nombre }}</td>
+                <td>{{ patient.Edad }}</td>
+                <td>{{ patient.get_Genero_display }}</td>
+                <td>{{ patient.Dedos_amarillos }}</td>
+                <td>{{ patient.Ansiedad }}</td>
+                <td>{{ patient.Presión_de_pares }}</td>
+                <td>{{ patient.Enfermedad_crónica }}</td>
+                <td>{{ patient.Fatiga }}</td>
+                <td>{{ patient.Alergia }}</td>
+                <td>{{ patient.Sibilancias }}</td>
+                <td>{{ patient.Consumo_de_alcohol }}</td>
+                <td>{{ patient.Tos }}</td>
+                <td>{{ patient.Dificultad_para_tragar }}</td>
+                <td>{{ patient.Dolor_en_el_pecho }}</td>
+                <td>{{ patient.probability }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <!-- Botón para descargar CSV -->
+    <br>
+    <form method="get" action="{% url 'descargar_csv' %}">
+        <button type="submit">Descargar CSV</button>
+    </form>
+</body>
+</html>

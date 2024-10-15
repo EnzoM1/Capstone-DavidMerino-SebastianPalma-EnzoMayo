@@ -9,6 +9,8 @@ import pandas as pd
 from django.contrib.auth.forms import UserCreationForm #este es un form que trae el django para guardar los users
 from django.db import IntegrityError #simplemente un mensaje de error
 from django.contrib.auth.decorators import login_required #esto protege las urls
+import csv
+
 
 #imports necesarios para que funcione la view
 
@@ -103,6 +105,40 @@ def predict_probability(request):
     else:
         form = PatientForm()
     return render(request, 'form.html', {'form': form})
+
+
+def listar_pacientes(request):
+    # Obtener todos los datos de la tabla
+    patients = PatientData.objects.all()  
+    return render(request, 'admin/listar_pacientes.html', {'patients': patients})
+
+def descargar_csv(request):
+    # Crear una respuesta de tipo CSV
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="pacientes.csv"'
+
+    # Crear el escritor CSV
+    writer = csv.writer(response)
+
+    # Escribir el encabezado
+    writer.writerow([
+        'Nombre', 'Edad', 'Género', 'Dedos Amarillos', 'Ansiedad', 'Presión de Pares',
+        'Enfermedad Crónica', 'Fatiga', 'Alergia', 'Sibilancias', 'Consumo de Alcohol',
+        'Tos', 'Dificultad para Tragar', 'Dolor en el Pecho', 'Probabilidad de Cáncer'
+    ])
+
+    # Obtener los datos de los pacientes
+    patients = PatientData.objects.all().values_list(
+        'Nombre', 'Edad', 'Genero', 'Dedos_amarillos', 'Ansiedad', 'Presión_de_pares', 
+        'Enfermedad_crónica', 'Fatiga', 'Alergia', 'Sibilancias', 'Consumo_de_alcohol', 
+        'Tos', 'Dificultad_para_tragar', 'Dolor_en_el_pecho', 'probability'
+    )
+
+    # Escribir los datos de los pacientes
+    for patient in patients:
+        writer.writerow(patient)
+
+    return response
 
 
 

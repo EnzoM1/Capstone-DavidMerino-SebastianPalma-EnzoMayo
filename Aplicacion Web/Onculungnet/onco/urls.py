@@ -18,10 +18,12 @@ urlpatterns = [
     
     # URL que confirma que la contraseña ha sido cambiada exitosamente
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    
+
     path('logout/',views.cerrarSesion,name="logout"),
 
     #admin view
     path('vistaAdmin/',views.vistaAdmin, name="vistaAdmin"),
     path('register/',views.register, name="register"),
+    path('listar_pacientes/', views.listar_pacientes, name='listar_pacientes'),
+    path('descargar_csv/', views.descargar_csv, name='descargar_csv'),
 ]
