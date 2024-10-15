@@ -7,7 +7,10 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: url('../img/b3.jpg') no-repeat center center/cover;
+    background-color: #ffffff;
+    background-image: 
+        radial-gradient(at 47% 33%, hsl(186.59, 100%, 50%) 0, transparent 59%), 
+        radial-gradient(at 82% 65%, hsl(186.59, 100%, 50%) 0, transparent 55%);
 }
 
 .container {

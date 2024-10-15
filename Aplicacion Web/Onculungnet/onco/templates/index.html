@@ -9,11 +9,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <style>
+        /* Media query to handle the icon moving in small screens */
+        @media (max-width: 760px) {
+            .left-section {
+                display: none; /* Hide left section */
+            }
+            .logo {
+                display: block; /* Show logo in the right section */
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="row w-100">
+            <!-- Left section will be hidden on small screens -->
             <div class="col-md-6 left-section d-none d-md-flex">
                 <div class="logo mb-4">
                     <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
@@ -25,6 +40,10 @@
             </div>
             <div class="col-md-6 right-section">
                 <div class="login-box">
+                    <!-- Logo will be moved here for small screens -->
+                    <div class="logo mb-4 d-md-none">
+                        <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
+                    </div>
                     <h2>Iniciar sesión</h2>
                     <form action="" method="POST">
                         {% csrf_token %}
