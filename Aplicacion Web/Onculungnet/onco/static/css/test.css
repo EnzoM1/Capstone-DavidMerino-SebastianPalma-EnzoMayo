@@ -1,0 +1,90 @@
+/* Custom Styles */
+.hero-section {
+    background-image: url('/static/img/b3.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 400px; /* Ajustar la altura para el zoom */
+    position: relative;
+}
+
+.hero-section .text-center {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.list-unstyled li {
+    margin-bottom: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #000;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1rem; /* Tamaño de texto más claro */
+}
+
+.navbar-brand {
+    font-size: 1.8rem; /* Ajustar tamaño del logo */
+}
+
+/* Cards */
+.card {
+    border: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card .card-body {
+    padding: 20px; /* Reducir el padding */
+}
+
+.card .bi {
+    font-size: 35px; /* Tamaño de íconos más pequeño */
+    color: #007bff;
+}
+
+/* Ajustar tamaño de imágenes en las cards */
+.card-img-top {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la card */
+    height: auto; /* Mantiene la altura automática para que la imagen se ajuste sin recortes */
+    max-height: 200px; /* Ajusta la altura máxima que desees */
+    object-fit: contain; /* Mantiene la proporción de la imagen sin recortes */
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+}
+
+/* Estilos para el botón */
+.btn-primary {
+    background-color: #343a40; /* Color del botón igual al del footer */
+    border: none; /* Sin borde */
+    border-radius: 0.25rem; /* Ajustar el redondeo de los bordes */
+    color: #fff; /* Color de texto blanco */
+}
+
+.btn-primary:hover {
+    background-color: #fff; /* Fondo blanco al hacer hover */
+    color: #343a40; /* Color del texto igual al del footer */
+}

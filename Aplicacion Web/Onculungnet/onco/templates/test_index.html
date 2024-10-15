@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OncoLungNet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/test.css' %}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Header -->
+    <header class="container-fluid bg-light py-2">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-telephone-fill me-2"></i>
+                <span>+56 9 72847622 </span>
+            </div>
+            <div class="d-flex align-items-center">
+                <span>Sta. Elena de Huechuraba 1660 </span>
+                <span class="ms-4">Lun-Dom: 9:00am - 6:00pm</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fs-3" href="#">
+                <img src="{% static 'img/pulmon_icon2.png' %}" alt="Icono de Pulmón" style="width: 60px; height: 60px;" class="me-2">
+                OncoLungNet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-5" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Nuestra Solución</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="#">Contacto</a>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary ms-lg-3 px-4 py-2">Iniciar sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center justify-content-center">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bold">Detección de Cáncer de Pulmón con IA</h1>
+            <p class="lead mb-4">Utilizando algoritmos de vanguardia para detectar el cáncer de pulmón de manera temprana y precisa.</p>
+            <ul class="list-unstyled">
+                <li class="mb-3"><i class="bi bi-check-circle-fill text-primary"></i> Algoritmos avanzados de IA</li>
+                <li><i class="bi bi-check-circle-fill text-primary"></i></li>
+            </ul>
+            <a href="#" class="btn btn-primary mt-4 px-4 py-2">CONOCE MÁS</a>
+        </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="container py-5">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{% static 'img/analisis_tiempo_real.jpg' %}" class="card-img-top" alt="Análisis en Tiempo Real">
+                    <div class="card-body">
+                        <i class="bi bi-heart-pulse fs-1 text-primary"></i>
+                        <h5 class="card-title mt-3">Análisis en Tiempo Real</h5>
+                        <p class="card-text">Nuestro sistema proporciona análisis en tiempo real para ayudar en la detección temprana del cáncer de pulmón.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{% static 'img/detecion_ia.jpg' %}" class="card-img-top" alt="Imagen de Doctores">
+                    <div class="card-body">
+                        <i class="bi bi-brain fs-1 text-primary"></i>
+                        <h5 class="card-title mt-3">Detección Impulsada por IA</h5>
+                        <p class="card-text">Nuestros modelos de IA están entrenados para proporcionar diagnósticos altamente precisos del cáncer de pulmón.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{% static 'img/reportes_complejos.jpg' %}" class="card-img-top" alt="Imagen de Farmacia">
+                    <div class="card-body">
+                        <i class="bi bi-file-earmark-medical fs-1 text-primary"></i>
+                        <h5 class="card-title mt-3">Reportes Complejos</h5>
+                        <p class="card-text">Obtén reportes detallados y fáciles de entender para mejorar la gestión de los pacientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Sobre Nosotros</h5>
+                    <p>OncoLungNet está a la vanguardia en la detección de cáncer de pulmón, utilizando inteligencia artificial para salvar vidas.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Inicio</a></li>
+                        <li><a href="#" class="text-white">Nuestra Solución</a></li>
+                        <li><a href="#" class="text-white">Contacto</a></li>
+                        <li><a href="#" class="text-white">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contáctanos</h5>
+                    <p>Sta. Elena de Huechuraba 1660 <br> +56 9 72847622</p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <small>&copy; 2024 OncoLungNet. Todos los Derechos Reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
