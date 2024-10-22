@@ -4,7 +4,11 @@ from django.contrib.auth import views as auth_views
 #tema urls en el futuro protegerlas para que no ingresen escribiendola manual
 
 urlpatterns = [
-    path('',views.inicio,name="inicio"),
+
+    path('',views.pagina_inicio,name="pagina_inicio"),
+
+    path('index/',views.inicio,name="index"),
+
     path('form/',views.predict_probability, name="form"), 
     
     # URL para solicitar el restablecimiento de contraseña

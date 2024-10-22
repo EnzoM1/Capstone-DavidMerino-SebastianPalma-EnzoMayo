@@ -20,6 +20,13 @@ import csv
 
 #si entran con otro usuario osea crean otro cualquiera y intentan ingresar a /vistaAdmin no van a tener acceso
 
+
+
+
+def pagina_inicio(request):
+    return render(request, 'test_index.html')
+
+
 @login_required
 def vistaAdmin(request):
      # Verifica si el usuario es el correcto
@@ -38,7 +45,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('inicio')
+            return redirect('index')
         else:
             # Si el formulario no es válido, devuelve el formulario con errores
             return render(request, 'admin/register.html', {"form": form, "error": "Formulario inválido."})
@@ -151,4 +158,4 @@ def PasswordResetConfirmView(request):
 @login_required
 def cerrarSesion(request):
     logout(request)
-    return redirect('inicio')
+    return redirect('pagina_inicio')
