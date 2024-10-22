@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,19 +6,17 @@
 
 body {
     font-family: 'Arial', sans-serif;
-
 }
 
 .container {
     display: flex;
     width: 100%;
     max-width: 800px;
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0.1);
     height: 100vh; /* Asegura que la altura de la sección ocupe toda la pantalla */
+    
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+   
 }
 
 .left-section {
@@ -44,9 +41,6 @@ body {
 }
 
 .left-section p {
-    font-size: 16px;
-    text-align: center;
-    max-width: 250px;
     font-size: 18px; /* Asegura un tamaño de fuente más grande */
     text-align: justify; /* Justificación del texto */
     padding: 20px;
@@ -75,17 +69,26 @@ body {
 }
 
 .login-box input {
-    padding: 12px 20px;
+    padding: 12px 15px; /* Espaciado interno */
     margin-bottom: 15px;
-    border-radius: 25px;
+    border-radius: 5px; /* Bordes redondeados sutiles */
     border: none;
     outline: none;
     background-color: #3b4b61;
     color: #fff;
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
 }
 
 .login-box input::placeholder {
     color: #b5b5b5;
+}
+
+.login-box input:hover {
+    background-color: #4a5c76; /* Color más claro al pasar el mouse */
+}
+
+.login-box input:focus {
+    background-color: #2f3c4f; /* Color más oscuro al hacer foco */
 }
 
 .remember-me {
@@ -99,8 +102,7 @@ body {
 button {
     padding: 12px 20px;
     border: none;
-    border-radius: 25px;
-    background-color: #a5a5a5; /* Color más claro para el botón */
+    border-radius: 5px; /* Bordes redondeados sutiles */
     background-color: #50dde2; /* Color más claro para el botón */
     color: #fff; /* Cambiar el color del texto a blanco */
     cursor: pointer;
@@ -133,7 +135,6 @@ button:hover {
 /* Media Queries */
 @media (max-width: 768px) {
     .container {
-        height: auto;
         height: auto; /* Ajustar la altura en pantallas pequeñas */
     }
 

@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +14,11 @@
         body {
             background-color: #343a40; /* Color del fondo ajustado */
             margin: 0;
-            height: 100vh; /* Para asegurar que cubre toda la pantalla */
+            height: 100vh;
+        }
+
+        .login-container {
+            height: calc(100vh - 60px); /* Ajustar el contenedor de login a la pantalla menos el alto del header */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,10 +36,27 @@
             }
         }
     </style>
+    
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
+    <!-- Header integration -->
+    <header class="bg-light" style="height: 8.33vh;">
+        <div class="container d-flex justify-content-between align-items-center h-100">
+            <div class="d-flex align-items-center flex-wrap">
+                <i class="bi bi-telephone-fill me-2"></i>
+                <span>+56 9 72847622</span>
+            </div>
+            <div class="d-flex align-items-center flex-wrap">
+                <span>Sta. Elena de Huechuraba 1660</span>
+                <span class="ms-4">Lun-Dom: 9:00am - 6:00pm</span>
+            </div>
+        </div>
+    </header>
+    
+    
+    <!-- Contenedor de la página de inicio de sesión -->
+    <div class="container login-container">
         <div class="row w-100">
             <!-- Left section will be hidden on small screens -->
             <div class="col-md-6 left-section d-none d-md-flex">
@@ -72,7 +93,7 @@
                     </form>
                     {% if messages %}
                         <ul class="list-unstyled mt-3">
-                        {% for message in messages %}
+                        {% for message in messages %} 
                             <li class="text-danger">{{ message }}</li>
                         {% endfor %}
                         </ul>
