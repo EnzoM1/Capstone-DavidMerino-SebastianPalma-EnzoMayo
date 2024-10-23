@@ -61,12 +61,11 @@
             <!-- Left section will be hidden on small screens -->
             <div class="col-md-6 left-section d-none d-md-flex">
                 <div class="logo mb-4">
-                    <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
+                    <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 200px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                 </div>
-                <h1 style="color: white;">OncoLungNet</h1>   
-                <p style="font-family: Arial, sans-serif; font-size: 18px; font-style: italic; text-align: justify; padding: 20px; color: white;">
-                    Detectar el cáncer de pulmón a tiempo es posible. Elige cuidar tu salud y abre la puerta a un futuro más saludable y pleno.
-                </p>
+               <!-- <h1 style="color: white; font-weight: 900; font-family: 'Bebas Neue', sans-serif;">
+                    OncoLungNet
+                </h1> -->
             </div>
             <div class="col-md-6 right-section">
                 <div class="login-box">
@@ -74,7 +73,7 @@
                     <div class="logo mb-4 d-md-none">
                         <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                     </div>
-                    <h2 style="color: white;">Iniciar sesión</h2>
+                    <h1 style="color: white;">Iniciar sesión</h2>
                     <form action="" method="POST">
                         {% csrf_token %}
                         <input type="text" class="form-control" placeholder="Email o Nombre de Usuario" name="username" required>

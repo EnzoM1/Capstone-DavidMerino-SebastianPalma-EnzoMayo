@@ -6,6 +6,9 @@
 
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #6e99a6;
+opacity: 0.8;
+background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(225deg, #343a40 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(315deg, #343a4055 25%, transparent 25%) 0px 0/ 26px 26px, linear-gradient(45deg, #343a40 25%, #6e99a6 25%) 0px 0/ 26px 26px;
 }
 
 .container {
@@ -13,14 +16,13 @@ body {
     width: 100%;
     max-width: 800px;
     height: 100vh; /* Asegura que la altura de la sección ocupe toda la pantalla */
-    
     border-radius: 15px;
     overflow: hidden;
    
 }
 
 .left-section {
-    background-color: #6e99a6; /* Color celeste claro */
+    background-color: #4d6b74; /* Color 30% más oscuro */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -49,11 +51,12 @@ body {
 
 .right-section {
     flex: 1;
-    background-color: rgba(46, 59, 78, 0.9);
+    background-color: rgba(32, 41, 55, 1); /* 30% más oscuro */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
+    height: 550px;
 }
 
 .login-box {
@@ -61,11 +64,14 @@ body {
     max-width: 300px;
 }
 
-.login-box h2 {
+.login-box h1 {
+    padding-bottom: 30px;
     color: #fff;
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
 }
 
 .login-box input {
