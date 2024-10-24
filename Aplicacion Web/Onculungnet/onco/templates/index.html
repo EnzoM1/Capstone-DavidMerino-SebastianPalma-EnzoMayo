@@ -12,64 +12,64 @@
 
     <style>
         body {
-            background-color: #343a40; /* Color del fondo ajustado */
+            background-color: #343a40; /* Color de fondo ajustado */
             margin: 0;
             height: 100vh;
         }
 
         .login-container {
-            height: calc(100vh - 60px); /* Ajustar el contenedor de login a la pantalla menos el alto del header */
+            height: calc(100vh - 50px); /* Ajustar el contenedor de login según el alto del header */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Media query to handle the icon moving in small screens */
+        header {
+            height: auto; /* Ajuste automático según el contenido */
+            padding: 0.5rem 0; /* Reducir el padding vertical para ocupar solo el espacio necesario */
+        }
+
+        /* Media query para manejar la sección izquierda en pantallas pequeñas */
         @media (max-width: 760px) {
             .left-section {
-                display: none; /* Hide left section */
+                display: none; /* Ocultar la sección izquierda en pantallas pequeñas */
             }
             .logo {
-                display: block; /* Show logo in the right section */
+                display: block; /* Mostrar el logo en la sección derecha */
                 text-align: center;
                 margin-bottom: 20px;
             }
         }
     </style>
-    
 </head>
 
-<body>
-    <!-- Header integration -->
-    <header class="bg-light" style="height: 8.33vh;">
-        <div class="container d-flex justify-content-between align-items-center h-100">
-            <div class="d-flex align-items-center flex-wrap">
+<body class="d-flex flex-column min-vh-100">
+    <!-- Header -->
+    <header class="container-fluid bg-light py-2">
+        <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center">
+            <div class="d-flex align-items-center" style="font-size: 0.8em;"> <!-- Reducir tamaño del texto en un 20% -->
                 <i class="bi bi-telephone-fill me-2"></i>
-                <span>+56 9 72847622</span>
+                <span>+56 9 72847622 </span>
             </div>
-            <div class="d-flex align-items-center flex-wrap">
+            <div class="d-flex align-items-center mt-2 mt-lg-0" style="font-size: 0.8em;"> <!-- Reducir tamaño del texto en un 20% -->
                 <span>Sta. Elena de Huechuraba 1660</span>
                 <span class="ms-4">Lun-Dom: 9:00am - 6:00pm</span>
             </div>
         </div>
     </header>
-    
-    
+
     <!-- Contenedor de la página de inicio de sesión -->
     <div class="container login-container">
         <div class="row w-100">
-            <!-- Left section will be hidden on small screens -->
+            <!-- Sección izquierda oculta en pantallas pequeñas -->
             <div class="col-md-6 left-section d-none d-md-flex">
                 <div class="logo mb-4">
                     <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 200px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                 </div>
-               <!-- <h1 style="color: white; font-weight: 900; font-family: 'Bebas Neue', sans-serif;">
-                    OncoLungNet
-                </h1> -->
             </div>
             <div class="col-md-6 right-section">
                 <div class="login-box">
-                    <!-- Logo will be moved here for small screens -->
+                    <!-- Logo visible en pantallas pequeñas -->
                     <div class="logo mb-4 d-md-none">
                         <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                     </div>

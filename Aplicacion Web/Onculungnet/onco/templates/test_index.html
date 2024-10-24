@@ -11,50 +11,51 @@
 <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
     <header class="container-fluid bg-light py-2">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
+        <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center">
+            <div class="d-flex align-items-center" style="font-size: 0.8em;"> <!-- Reducir tamaño del texto en un 20% -->
                 <i class="bi bi-telephone-fill me-2"></i>
                 <span>+56 9 72847622 </span>
             </div>
-            <div class="d-flex align-items-center">
-                <span>Sta. Elena de Huechuraba 1660 </span>
+            <div class="d-flex align-items-center mt-2 mt-lg-0" style="font-size: 0.8em;"> <!-- Reducir tamaño del texto en un 20% -->
+                <span>Sta. Elena de Huechuraba 1660</span>
                 <span class="ms-4">Lun-Dom: 9:00am - 6:00pm</span>
             </div>
         </div>
     </header>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
         <div class="container">
-            <a class="navbar-brand fs-3" href="#">
-                <img src="{% static 'img/pulmon_icon2.png' %}" alt="Icono de Pulmón" style="width: 60px; height: 60px;" class="me-2">
+            <a class="navbar-brand fs-5" href="#"> <!-- Tamaño reducido -->
+                <img src="{% static 'img/pulmon_icon2.png' %}" alt="Icono de Pulmón" style="width: 48px; height: 48px;" class="me-2"> <!-- Icono reducido -->
                 OncoLungNet
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+            <div class="collapse navbar-collapse justify-content-lg-end" id="navbarNav"> <!-- Justificado a la derecha en pantallas grandes -->
+                <ul class="navbar-nav text-center"> <!-- Centralizado en pantallas pequeñas -->
                     <li class="nav-item">
-                        <a class="nav-link active fs-5" href="#">Inicio</a>
+                        <a class="nav-link active fs-6" href="#">Inicio</a> <!-- Tamaño reducido -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Nuestra Solución</a>
+                        <a class="nav-link fs-6" href="#">Nuestra Solución</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Sobre Nosotros</a>
+                        <a class="nav-link fs-6" href="#">Sobre Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Características</a>
+                        <a class="nav-link fs-6" href="#">Características</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="#">Contacto</a>
+                        <a class="nav-link fs-6" href="#">Contacto</a>
                     </li>
                 </ul>
-                <a href="{% url 'index' %}" class="btn btn-primary ms-lg-3 px-4 py-2">Iniciar sesión</a>
             </div>
+            <!-- Botón de Iniciar sesión centrado en móviles y margen en pantallas grandes -->
+            <a href="{% url 'index' %}" class="btn btn-primary ms-lg-3 mx-auto px-3 py-2 d-flex">Iniciar sesión</a> <!-- mx-auto lo centra en móviles -->
         </div>
     </nav>
+    
 
     <!-- Hero Section -->
     <section class="hero-section d-flex align-items-center justify-content-center">

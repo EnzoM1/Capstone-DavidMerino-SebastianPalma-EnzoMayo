@@ -11,15 +11,6 @@ opacity: 0.8;
 background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(225deg, #343a40 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(315deg, #343a4055 25%, transparent 25%) 0px 0/ 26px 26px, linear-gradient(45deg, #343a40 25%, #6e99a6 25%) 0px 0/ 26px 26px;
 }
 
-.container {
-    display: flex;
-    width: 100%;
-    max-width: 800px;
-    height: 100vh; /* Asegura que la altura de la sección ocupe toda la pantalla */
-    border-radius: 15px;
-    overflow: hidden;
-   
-}
 
 .left-section {
     background-color: #4d6b74; /* Color 30% más oscuro */
