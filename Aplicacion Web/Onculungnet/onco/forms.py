@@ -110,6 +110,14 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+    def __init__(self, *args, **kwargs):
+
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'placeholder': 'Enter your username'})
+        self.fields['email'].widget.attrs.update({'placeholder': 'Enter your email'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Enter your password'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm your password'})
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():

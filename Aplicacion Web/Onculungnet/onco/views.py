@@ -47,6 +47,7 @@ def register(request):
             login(request, user)
             return redirect('index')
         else:
+            messages.error(request, 'El formulario no es válido. Por favor, corrige los errores.')
             # Si el formulario no es válido, devuelve el formulario con errores
             return render(request, 'admin/register.html', {"form": form, "error": "Formulario inválido."})
 
