@@ -31,8 +31,6 @@
 
         .form-label {
             color: white; /* Color de las etiquetas */
-            margin-bottom: 0.5rem; /* Espacio entre la etiqueta y el input */
-            display: block; /* Asegura que el label ocupe toda la línea */
         }
         input {
     width: 100%; /* Asegura que los inputs ocupen todo el ancho */
@@ -68,39 +66,29 @@
     </header>
     
     <!-- Login Container -->
-    <div class="container login-container">
-        <div class="row w-100 justify-content-center">
+    <div class="container login-container ">
+        <div class="row w-100 ">
             <div class="col-md-6 left-section d-none d-md-flex">
                 <div class="logo mb-4">
                     <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 200px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                 </div>
             </div>
-            <div class="col-md-6 right-section d-flex flex-column align-items-center">
-                <div class="login-box text-center">
+            <div class="col-md-6 right-section">
+                <div class="login-box">
                     <div class="logo mb-4 d-md-none">
                         <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                     </div>
                     <h1 style="color: white;">Registrar Usuario</h1>
                     <form id="registerForm" action="/register/" method="POST" class="text-center">
                         {% csrf_token %}
-                        
-                        <div class="mb-3">
                             <label for="id_username" class="form-label">Nombre de usuario</label>
-                            {{ form.username }}
-                        </div>
-                        <div class="mb-3">
+                            {{ form.username }}   
                             <label for="id_email" class="form-label">Correo electrónico</label>
                             {{ form.email }}
-                        </div>
-                        <div class="mb-3">
                             <label for="id_password1" class="form-label">Contraseña</label>
                             {{ form.password1 }}
-                        </div>
-                        <div class="mb-3">
                             <label for="id_password2" class="form-label">Confirmar contraseña</label>
                             {{ form.password2 }}
-                        </div>
-                        
                         <button type="submit" class="btn"
                                 style="background-color: #50dde2; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;"
                                 onmouseover="this.style.backgroundColor='#fff'; this.style.color='#50dde2';"
@@ -108,6 +96,7 @@
                             Registrar
                         </button>
                     </form>
+                </div>
                     {% if messages %}
                         <ul class="list-unstyled mt-3">
                         {% for message in messages %}
@@ -115,7 +104,7 @@
                         {% endfor %}
                         </ul>
                     {% endif %}
-                </div>
+
             </div>
         </div>
     </div>
