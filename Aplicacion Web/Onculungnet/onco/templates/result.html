@@ -4,10 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>resultado prediccion</title>
+    <style>
+        /* Estilo del pop-up */
+        #popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f8f9fa;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            border-radius: 8px;
+        }
+        .btn-ok {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+    <!-- Pop-up -->
+    <div id="popup">
+        <p>Tu formulario ha sido enviado correctamente.</p>
+        <button class="btn-ok" onclick="closePopup()">OK</button>
+    </div>
+
+
     <h1>Probabilidad de cáncer: {{ probability }}</h1>
     <br>
     <a href="{% url 'form' %}">Volver al formulario</a>
+
+    <script>
+        // Mostrar el pop-up al cargar la página
+        window.onload = function() {
+            document.getElementById('popup').style.display = 'block';
+        };
+
+        // Función para cerrar el pop-up
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>
