@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm #este es un form que trae
 from django.db import IntegrityError #simplemente un mensaje de error
 from django.contrib.auth.decorators import login_required #esto protege las urls
 import csv
+import json
 
 
 #imports necesarios para que funcione la view
@@ -32,9 +33,35 @@ def sintomas(request):
 
 @login_required
 def vistaAdmin(request):
-     # Verifica si el usuario es el correcto
+    # Verifica si el usuario es el correcto
     if request.user.username == 'skibidi':  # Reemplaza con el nombre de usuario específico
-        return render(request, 'admin/vistaAdmin.html')  # Reemplaza con tu template
+        # Obtener los datos de los pacientes desde el modelo
+        pacientes = PatientData.objects.all()
+
+        # Preparar datos para los gráficos
+        edades = [paciente.Edad for paciente in pacientes]
+
+        # Convertir las probabilidades a enteros (en porcentaje)
+        probabilidades = [
+            int(float(paciente.probability.replace('%', '').strip())) if isinstance(paciente.probability, str) else int(paciente.probability * 100) if paciente.probability is not None else 0
+            for paciente in pacientes
+        ]
+        
+        # Debugging
+        print(f"Edades: {edades}")
+        print(f"Probabilidades: {probabilidades}")
+        # Opcional: Obtener las probabilidades separadas por género para análisis
+        hombres = [paciente for paciente in pacientes if paciente.Genero == 'H']
+        mujeres = [paciente for paciente in pacientes if paciente.Genero == 'M']
+
+        context = {
+            'edades': json.dumps(edades),
+            'probabilidades': json.dumps(probabilidades),
+            'hombres': json.dumps([int(float(p.probability.replace('%', '').strip())) if isinstance(p.probability, str) else int(p.probability * 100) if p.probability is not None else 0 for p in hombres]),
+            'mujeres': json.dumps([int(float(p.probability.replace('%', '').strip())) if isinstance(p.probability, str) else int(p.probability * 100) if p.probability is not None else 0 for p in mujeres]),
+        }
+        return render(request, 'admin/vistaAdmin.html', context) 
+    
     else:
         return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
 
@@ -104,13 +131,13 @@ def predict_probability(request):
             # Predecir la probabilidad de cáncer
             probability = lr_model.predict_proba(selected_features)[:, 1][0]
             
-            # Convertir la probabilidad a porcentaje entero
-            probability_percentage = "{}%".format(int(round(probability * 100)))
-            
             # Guardar los datos del paciente en un nuevo modelo y la base de datos
             patient_data_obj = PatientData(**patient_data)
-            patient_data_obj.probability = probability_percentage
+            patient_data_obj.probability = probability  # Save as a decimal (e.g., 0.85)
             patient_data_obj.save()
+            
+            # Convertir la probabilidad a porcentaje entero para la visualización
+            probability_percentage = "{}%".format(int(round(probability * 100)))
             
             return render(request, 'result.html', {'probability': probability_percentage})
     else:

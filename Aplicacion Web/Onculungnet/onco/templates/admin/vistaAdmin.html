@@ -1,15 +1,53 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilo para los gráficos */
+        canvas {
+            max-width: 600px; /* Tamaño máximo para gráficos */
+            margin: 20px auto; /* Centrando los gráficos */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around; /* Espacio entre gráficos */
+        }
+        .chart-container {
+            width: 45%; /* Ancho de cada gráfico */
+            margin: 10px; /* Espaciado entre gráficos */
+        }
+    </style>
 </head>
 <body>
     <h1>ERES UN SKIBIDI SIGMA</h1>
+    <h1>Dashboard Admin</h1>
 
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="edadChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="probabilidadChart" width="400" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="generoChart" width="400" height="200"></canvas>
+        </div>
+    </div>
     <a href="{% url 'register' %}">Registrar un usuario para la página</a>
     <br>
     <a href="{% url 'listar_pacientes' %}">Listar pacientes</a>
+
+
+     <!-- Pasar los datos desde Django al archivo JavaScript -->
+     <script id="edadData" type="application/json">{{ edades|safe }}</script>
+     <script id="probabilidadData" type="application/json">{{ probabilidades|safe }}</script>
+ 
+     <!-- Incluir el archivo JavaScript externo -->
+     <script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>
