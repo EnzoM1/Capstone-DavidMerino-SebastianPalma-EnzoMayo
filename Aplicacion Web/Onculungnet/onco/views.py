@@ -26,6 +26,9 @@ import csv
 def pagina_inicio(request):
     return render(request, 'test_index.html')
 
+def sintomas(request):
+    return render(request, 'sintomas.html')
+
 
 @login_required
 def vistaAdmin(request):

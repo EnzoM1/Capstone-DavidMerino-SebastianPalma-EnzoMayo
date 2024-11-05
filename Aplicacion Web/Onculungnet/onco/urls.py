@@ -9,6 +9,8 @@ urlpatterns = [
 
     path('index/',views.inicio,name="index"),
 
+    path('sintomas/',views.sintomas,name="sintomas"),
+
     path('form/',views.predict_probability, name="form"), 
     
     # URL para solicitar el restablecimiento de contraseña
