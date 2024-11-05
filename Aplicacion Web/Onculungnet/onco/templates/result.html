@@ -1,52 +1,82 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>resultado prediccion</title>
+    <title>Resultado Predicción</title>
+    <!-- Enlace a Bootstrap 5 CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         /* Estilo del pop-up */
         #popup {
             display: none;
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #f8f9fa;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
             padding: 20px;
             border: 1px solid #ccc;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1000;
             border-radius: 8px;
+            text-align: center;
         }
-        .btn-ok {
-            margin-top: 10px;
-            padding: 5px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+
+        /* Contenedor del contenido principal */
+        .main-content {
+    background-color: rgba(255, 255, 255, 0.9); /* Blanco con opacidad */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 50%; /* Mueve el contenedor al 50% de la altura de la pantalla */
+    left: 50%; /* Mueve el contenedor al 50% de la anchura de la pantalla */
+    transform: translate(-50%, -50%); /* Ajusta la posición para centrarlo */
+    width: 80%; /* Ancho del contenedor (puedes ajustarlo según tus necesidades) */
+    max-width: 600px; /* Ancho máximo para el contenedor */
+    height: auto; /* Altura automática para que se ajuste al contenido */
+}
     </style>
+    <!-- Enlace a Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <!-- Pop-up -->
     <div id="popup">
-        <p>Tu formulario ha sido enviado correctamente.</p>
-        <button class="btn-ok" onclick="closePopup()">OK</button>
+        <div class="popup-content text-center">
+            <div class="d-flex justify-content-center">
+                <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 2rem;"></i>
+            </div>
+            <p class="mt-3" style="text-align: justify;">
+                <strong>Advertencia:</strong> Los resultados proporcionados por este formulario son orientativos y no representan un diagnóstico médico definitivo. La precisión de estos resultados no es del 100%, y, aunque se basan en algoritmos avanzados de detección, pueden estar sujetos a variaciones. Si el resultado de probabilidad de cáncer supera el 70%, le recomendamos encarecidamente que consulte a un especialista médico. Un profesional de la salud es quien podrá realizar un análisis exhaustivo y ofrecer una evaluación precisa basada en pruebas clínicas y un diagnóstico adecuado.
+            </p>
+            <button class="btn btn-primary mt-3" onclick="closePopup()">OK</button>
+        </div>
     </div>
 
-
-    <h1>Probabilidad de cáncer: {{ probability }}</h1>
-    <br>
-    <a href="{% url 'form' %}">Volver al formulario</a>
+    <!-- Contenido principal -->
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="main-content text-center">
+            <h1>Probabilidad de cáncer: {{ probability }}</h1>
+            <br>
+            <button class="btn btn-primary mt-3" onclick="location.href='{% url 'form' %}'">Ver reporte</button>
+        </div>
+    </div>
 
     <script>
         // Mostrar el pop-up al cargar la página
         window.onload = function() {
-            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popup').style.display = 'flex';
         };
 
         // Función para cerrar el pop-up
@@ -54,6 +84,5 @@
             document.getElementById('popup').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
