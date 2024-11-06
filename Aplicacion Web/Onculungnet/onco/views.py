@@ -33,35 +33,51 @@ def sintomas(request):
 
 @login_required
 def vistaAdmin(request):
-    # Verifica si el usuario es el correcto
-    if request.user.username == 'skibidi':  # Reemplaza con el nombre de usuario específico
-        # Obtener los datos de los pacientes desde el modelo
+    if request.user.username == 'skibidi':
         pacientes = PatientData.objects.all()
-
-        # Preparar datos para los gráficos
+        
+        # Distribución de Edad de Pacientes
         edades = [paciente.Edad for paciente in pacientes]
+        
+        # Probabilidad de Cáncer por Género
+        hombres_probabilidad = [
+            float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
+            for p in pacientes if p.Genero == 'H' and p.probability
+        ]
 
-        # Convertir las probabilidades a enteros (en porcentaje)
-        probabilidades = [
-            int(float(paciente.probability.replace('%', '').strip())) if isinstance(paciente.probability, str) else int(paciente.probability * 100) if paciente.probability is not None else 0
-            for paciente in pacientes
+        mujeres_probabilidad = [
+            float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
+            for p in pacientes if p.Genero == 'M' and p.probability
+        ]
+
+        # Calcular promedio de probabilidad para hombres y mujeres
+        genero_data = [
+            sum(hombres_probabilidad) / len(hombres_probabilidad) if hombres_probabilidad else 0,
+            sum(mujeres_probabilidad) / len(mujeres_probabilidad) if mujeres_probabilidad else 0
         ]
         
-        # Debugging
-        print(f"Edades: {edades}")
-        print(f"Probabilidades: {probabilidades}")
-        # Opcional: Obtener las probabilidades separadas por género para análisis
-        hombres = [paciente for paciente in pacientes if paciente.Genero == 'H']
-        mujeres = [paciente for paciente in pacientes if paciente.Genero == 'M']
+        # Distribución de Probabilidad de Cáncer en intervalos
+        probabilidad_data = [0, 0, 0, 0]
+        for p in pacientes:
+            if p.probability:
+                prob = float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
+                if prob <= 25:
+                    probabilidad_data[0] += 1
+                elif prob <= 50:
+                    probabilidad_data[1] += 1
+                elif prob <= 75:
+                    probabilidad_data[2] += 1
+                else:
+                    probabilidad_data[3] += 1
 
+        # Contexto para la plantilla
         context = {
-            'edades': json.dumps(edades),
-            'probabilidades': json.dumps(probabilidades),
-            'hombres': json.dumps([int(float(p.probability.replace('%', '').strip())) if isinstance(p.probability, str) else int(p.probability * 100) if p.probability is not None else 0 for p in hombres]),
-            'mujeres': json.dumps([int(float(p.probability.replace('%', '').strip())) if isinstance(p.probability, str) else int(p.probability * 100) if p.probability is not None else 0 for p in mujeres]),
+            'edadData': json.dumps(edades),
+            'generoData': json.dumps(genero_data),
+            'probabilidadData': json.dumps(probabilidad_data)
         }
-        return render(request, 'admin/vistaAdmin.html', context) 
-    
+
+        return render(request, 'admin/vistaAdmin.html', context)
     else:
         return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
 
