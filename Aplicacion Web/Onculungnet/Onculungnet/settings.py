@@ -140,7 +140,7 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='mysql://root:admin@localhost:3306/Onco2',
+        default='mysql://root:310303@localhost:3306/Onco',
         conn_max_age=600
     )
 }

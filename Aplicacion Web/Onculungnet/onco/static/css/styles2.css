@@ -20,7 +20,7 @@ body {
 }
 
 .sidebar.minimized {
-    width: 80px;
+    width: 55px;
 }
 
 .sidebar a {
@@ -92,7 +92,7 @@ body {
     text-decoration: none;
     position: absolute;
     bottom: 10px;
-    left: 0;
+    left: 3px;
     font-size: 12px;
     height: 60px;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -201,3 +201,10 @@ body {
     margin-top: -10px;
 }
 
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+    border-radius: 20px;
+}

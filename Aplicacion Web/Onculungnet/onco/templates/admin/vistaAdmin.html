@@ -1,9 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <title>Dashboard Admin</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -11,21 +15,83 @@
             max-width: 600px;
             margin: 20px auto;
         }
+
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
+
         .chart-container {
             width: 45%;
             margin: 10px;
         }
     </style>
 </head>
-<body>
-    <h1>Dashboard Admin</h1>
 
-    <div class="container">
+<body class="bg-light">
+
+    <div class="area"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menú</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-house-door"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_pacientes' %}" ><i class="bi bi-exclamation-circle"></i> Lista Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}"><i class="bi bi-clipboard-data"></i> Registrar nuevo usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-telephone"></i> Contactar</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="/logout"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar minimized d-none d-lg-block" id="sidebar">
+        <div class="minimize-btn-container">
+            <span class="minimize-btn" onclick="toggleSidebar()">⏶</span>
+        </div>
+        <a href="#" class="d-flex align-items-center">
+            <i class="bi bi-house-door"></i>
+            <span class="sidebar-text">Dashboard</span>
+        </a>
+        <a  href="{% url 'listar_pacientes' %}" class="d-flex align-items-center">
+            <i class="bi bi-exclamation-circle"></i>
+            <span class="sidebar-text">Lista Pacientes</span>
+        </a>
+        <a href="{% url 'register' %}" class="d-flex align-items-center">
+            <i class="bi bi-clipboard-data"></i>
+            <span class="sidebar-text">Registrar nuevo usuario</span>
+        </a>
+        <a href="#" class="d-flex align-items-center">
+            <i class="bi bi-telephone"></i>
+            <span class="sidebar-text">Contactar</span>
+        </a>
+
+        {% if user.is_authenticated %}
+        <a href="/logout" class="logout-btn d-flex align-items-center justify-content-center">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="sidebar-text">Cerrar sesión</span>
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="container" style="padding: 20px;">
         <div class="chart-container">
             <canvas id="edadChart"></canvas>
         </div>
@@ -37,14 +103,18 @@
         </div>
     </div>
 
-    <a href="{% url 'register' %}">Registrar un usuario para la página</a>
-    <br>
-    <a href="{% url 'listar_pacientes' %}">Listar pacientes</a>
-
     <script id="edadData" type="application/json">{{ edadData|safe }}</script>
     <script id="generoData" type="application/json">{{ generoData|safe }}</script>
     <script id="probabilidadData" type="application/json">{{ probabilidadData|safe }}</script>
 
     <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("minimized");
+        }
+    </script>
 </body>
+
 </html>
