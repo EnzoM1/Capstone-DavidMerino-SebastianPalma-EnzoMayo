@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-house-door"></i> Inicio</a>
+                        <a class="nav-link" href="{% url 'form' %}"><i class="bi bi-house-door"></i> Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'sintomas' %}" ><i class="bi bi-exclamation-circle"></i> Síntomas</a>
@@ -46,7 +46,7 @@
         <div class="minimize-btn-container">
             <span class="minimize-btn" onclick="toggleSidebar()">⏶</span>
         </div>
-        <a href="#" class="d-flex align-items-center">
+        <a href="{% url 'form' %}" class="d-flex align-items-center">
             <i class="bi bi-house-door"></i>
             <span class="sidebar-text">Inicio</span>
         </a>
@@ -73,11 +73,12 @@
 
      <!-- Cards con los sintos -->
       
-    <div class="container my-5" >
+     <div class="container my-5" style="text-align: justify;">
+        <h1 style="text-align: center; margin: 15px;">Sintomas</h1>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img src="{% static 'img/dedosamarillos.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7" style="height: 150px; width: 150px; margin-left: 60px;">
                     <div class="card-body">
                         <h5 class="card-title">Dedos Amarillos</h5>
                         <p class="card-text">La decoloración causada por el tabaco indica exposición constante a sustancias carcinógenas, elevando el riesgo de cáncer de pulmón.</p>
@@ -89,7 +90,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img  style="height: 150px; width: 150px; margin-left: 70px; margin-top: 5px;" src="{% static 'img/ansiedad2.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7 " >
                     <div class="card-body">
                         <h5 class="card-title">Ansiedad</h5>
                         <p class="card-text">Puede llevar a un mayor consumo de tabaco o alcohol en algunas personas, aumentando así la exposición a carcinógenos.</p>
@@ -101,7 +102,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/presionalta.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Presión de pares</h5>
                         <p class="card-text">La presión social para fumar o beber incrementa el riesgo de desarrollar cáncer de pulmón en personas susceptibles.</p>
@@ -113,7 +114,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/enfermedadesbase.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Enfermedad crónica</h5>
                         <p class="card-text">Condiciones crónicas respiratorias como la EPOC pueden predisponer al cáncer de pulmón debido al daño prolongado en los tejidos pulmonares.</p>
@@ -125,7 +126,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img  style="height: 150px; width: 150px; margin-left: 60px;" src="{% static 'img/fatiga.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Fatiga</h5>
                         <p class="card-text">Aunque no es un motivo directo, el cansancio crónico puede hacer que se busquen hábitos poco saludables como el tabaco, elevando el riesgo de cáncer.</p>
@@ -137,7 +138,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img  style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/alergias.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Alergia</h5>
                         <p class="card-text">Aunque no es una causa directa, las alergias respiratorias frecuentes pueden llevar a un uso excesivo de tratamientos como los esteroides, que podrían afectar la salud pulmonar a largo plazo.</p>
@@ -149,7 +150,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img  style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/faltadeaire.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Sibilancias</h5>
                         <p class="card-text">Pueden surgir por la inflamación respiratoria causada por fumar, lo que con el tiempo daña el tejido y aumenta el riesgo de cáncer.</p>
@@ -161,7 +162,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/alcohol.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Consumo de alcohol</h5>
                         <p class="card-text">Asociado a estilos de vida que pueden incluir el consumo de tabaco, un riesgo conocido para el cáncer de pulmón.</p>
@@ -173,7 +174,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/tos.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Tos</h5>
                         <p class="card-text">Fumar frecuentemente causa irritación crónica en los pulmones, predisponiendo a mutaciones celulares que pueden llevar al cáncer.</p>
@@ -185,7 +186,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/dificultadparatragar.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Dificultad para tragar</h5>
                         <p class="card-text">En algunos casos, el reflujo ácido crónico (agravado por el tabaquismo o el alcohol) puede dañar las vías respiratorias y ser un factor de riesgo.</p>
@@ -197,7 +198,7 @@
             </div>
             <div class="col">
                 <div class="card h-100">
-                    <img src="ruta/al/archivo.jpg" class="card-img-top" alt="Imagen de la tarjeta 7">
+                    <img style="height: 150px; width: 150px; margin-left: 60px;"  src="{% static 'img/dolordepecho.png' %}" class="card-img-top" alt="Imagen de la tarjeta 7">
                     <div class="card-body">
                         <h5 class="card-title">Dolor en el pecho</h5>
                         <p class="card-text">El dolor relacionado con el tabaquismo intenso o el daño pulmonar previo puede ser un signo de daño celular progresivo en los pulmones.</p>
