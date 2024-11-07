@@ -46,6 +46,6 @@ class PatientData(models.Model):
     Dificultad_para_tragar = models.IntegerField()
     Dolor_en_el_pecho = models.IntegerField()
     #ANXYELFIN = models.IntegerField()
-    probability = models.CharField(null=True, blank=True,max_length=255)
+    probability = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
