@@ -12,6 +12,33 @@
     <title>Lista de Pacientes</title>
     <link rel="stylesheet" href="{% static 'css/adminStyle.css' %}">
 
+    <style>
+        /* Estilo personalizado para la paginación en tonos de gris */
+        .pagination .page-item .page-link {
+            color: #6c757d;
+            /* Texto gris */
+            background-color: #f8f9fa;
+            /* Fondo gris claro */
+            border-color: #dee2e6;
+            /* Borde gris */
+        }
+
+        .pagination .page-item.active .page-link {
+            color: #fff;
+            /* Texto blanco */
+            background-color: #6c757d;
+            /* Fondo gris oscuro */
+            border-color: #6c757d;
+            /* Borde gris oscuro */
+        }
+
+        .pagination .page-item .page-link:hover {
+            background-color: #121416;
+            /* Fondo gris un poco más oscuro al pasar el cursor */
+            border-color: #000000;
+        }
+    </style>
+
 </head>
 
 <body class="bg-light">
@@ -29,7 +56,7 @@
                         <a class="nav-link" href="{% url 'vistaAdmin' %}"><i class="bi bi-house-door"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'listar_pacientes' %}"><i class="bi bi-exclamation-circle"></i>
+                        <a class="nav-link" href="#"><i class="bi bi-exclamation-circle"></i>
                             Lista Pacientes</a>
                     </li>
                     <li class="nav-item">
@@ -58,7 +85,7 @@
             <i class="bi bi-house-door"></i>
             <span class="sidebar-text">Dashboard</span>
         </a>
-        <a href="{% url 'listar_pacientes' %}" class="d-flex align-items-center">
+        <a href="#" class="d-flex align-items-center">
             <i class="bi bi-exclamation-circle"></i>
             <span class="sidebar-text">Lista Pacientes</span>
         </a>
@@ -132,8 +159,12 @@
             </table>
         </div>
 
+        <!-- Controles de Paginación -->
+        <nav aria-label="Paginación de tabla">
+            <ul class="pagination justify-content-center mt-3" id="paginationControls"></ul>
+        </nav>
+
         <!-- Botón para descargar CSV -->
-        <br>
         <form method="get" action="{% url 'descargar_csv' %}">
             <button class="btn btn-secondary" type="submit">Descargar</button>
         </form>
@@ -151,26 +182,62 @@
     </script>
 
     <script>
-        // Función para filtrar la tabla
-        document.getElementById('searchInput').addEventListener('keyup', function () {
-            var filter = this.value.toLowerCase(); // Obtener el texto de búsqueda
-            var rows = document.querySelectorAll('#tableBody tr'); // Obtener todas las filas de la tabla
+        const rowsPerPage = 10; // Número de filas por página
+        let currentPage = 1; // Página inicial
 
-            rows.forEach(function (row) {
-                var cells = row.getElementsByTagName('td'); // Obtener todas las celdas de cada fila
-                var found = false;
+        // Filtrar la tabla
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
 
-                // Recorrer cada celda de la fila para verificar si contiene el texto de búsqueda
-                for (var i = 0; i < cells.length; i++) {
-                    if (cells[i].textContent.toLowerCase().indexOf(filter) > -1) {
-                        found = true;
-                        break;
-                    }
-                }
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
 
-                // Si la fila contiene el texto, mostrarla, si no, ocultarla
-                row.style.display = found ? '' : 'none';
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByTagName('td'));
+                row.style.display = cells.some(cell => cell.textContent.toLowerCase().includes(filter)) ? '' : 'none';
             });
+
+            updatePagination();
+            showPage(currentPage);
+        }
+
+        function showPage(page) {
+            const rows = document.querySelectorAll('#tableBody tr');
+            rows.forEach((row, index) => {
+                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
+            });
+        }
+
+        function updatePagination() {
+            const rows = document.querySelectorAll('#tableBody tr');
+            const totalRows = Array.from(rows).filter(row => row.style.display !== 'none').length;
+            const pageCount = Math.ceil(totalRows / rowsPerPage);
+
+            const paginationControls = document.getElementById('paginationControls');
+            paginationControls.innerHTML = '';
+
+            for (let i = 1; i <= pageCount; i++) {
+                const li = document.createElement('li');
+                li.className = 'page-item' + (i === currentPage ? ' active' : '');
+                const a = document.createElement('a');
+                a.className = 'page-link';
+                a.textContent = i;
+                a.href = '#';
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    showPage(currentPage);
+                    updatePagination();
+                });
+                li.appendChild(a);
+                paginationControls.appendChild(li);
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePagination();
+            showPage(currentPage);
         });
     </script>
 </body>

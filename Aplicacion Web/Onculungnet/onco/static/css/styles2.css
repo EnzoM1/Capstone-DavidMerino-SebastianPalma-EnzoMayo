@@ -14,7 +14,8 @@ body {
     left: 0;
     background-color: #343a40;
     overflow-x: hidden;
-    overflow-y: auto; /* Permitir desplazamiento vertical */
+    overflow-y: auto;
+    /* Permitir desplazamiento vertical */
     transition: width 0.5s ease-in-out;
     padding-top: 10px;
 }
@@ -26,7 +27,8 @@ body {
 .sidebar a {
     padding: 10px;
     margin: 0;
-    height: 60px; /* Ajustar altura para evitar sobreposiciones */
+    height: 60px;
+    /* Ajustar altura para evitar sobreposiciones */
     font-size: 16px;
     color: white;
     display: flex;
@@ -34,12 +36,15 @@ body {
     justify-content: flex-start;
     text-align: left;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Transición suave */
 }
 
 .sidebar a:hover {
-    background-color: #495057; /* Color hover más suave */
-    transform: scale(1.05); /* Efecto de escala suave al hover */
+    background-color: #495057;
+    /* Color hover más suave */
+    transform: scale(1.05);
+    /* Efecto de escala suave al hover */
 }
 
 .minimize-btn {
@@ -118,7 +123,8 @@ body {
 /* Ajuste para pantallas pequeñas */
 @media (max-width: 768px) {
     .sidebar {
-        width: 80px; /* Sidebar más estrecho en pantallas pequeñas */
+        width: 80px;
+        /* Sidebar más estrecho en pantallas pequeñas */
     }
 
     .sidebar .sidebar-text {
@@ -137,12 +143,18 @@ body {
 
 /* Estilos generales para formularios */
 .form-container {
-    max-width: 600px; /* Ancho máximo del formulario */
-    margin: 50px auto; /* Centrar el formulario */
-    padding: 20px; /* Espaciado interno */
-    background-color: #fff; /* Color de fondo */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    max-width: 600px;
+    /* Ancho máximo del formulario */
+    margin: 50px auto;
+    /* Centrar el formulario */
+    padding: 20px;
+    /* Espaciado interno */
+    background-color: #fff;
+    /* Color de fondo */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra */
 }
 
 /* Estilo para el título del formulario */

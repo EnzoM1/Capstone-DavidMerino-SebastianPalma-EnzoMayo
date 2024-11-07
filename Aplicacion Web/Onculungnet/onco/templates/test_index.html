@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/test.css' %}" rel="stylesheet">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <!-- Header -->
     <header class="container-fluid bg-light py-2">
@@ -26,10 +28,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
         <div class="container">
             <a class="navbar-brand fs-5" href="#">
-                <img src="{% static 'img/pulmon_icon2.png' %}" alt="Icono de Pulmón" style="width: 48px; height: 48px;" class="me-2">
+                <img src="{% static 'img/pulmon_icon2.png' %}" alt="Icono de Pulmón" style="width: 48px; height: 48px;"
+                    class="me-2">
                 OncoLungNet
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
@@ -56,7 +60,8 @@
     <section id="inicio" class="hero-section d-flex align-items-center justify-content-center">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bold">Detección de Cáncer de Pulmón con IA</h1>
-            <p class="lead mb-4">Utilizando algoritmos de vanguardia para detectar el cáncer de pulmón de manera temprana y precisa.</p>
+            <p class="lead mb-4">Utilizando algoritmos de vanguardia para detectar el cáncer de pulmón de manera
+                temprana y precisa.</p>
             <ul class="list-unstyled">
                 <li class="mb-3"><i class="bi bi-check-circle-fill text-primary"></i> Algoritmos avanzados de IA</li>
                 <li><i class="bi bi-check-circle-fill text-primary"></i></li>
@@ -70,11 +75,13 @@
         <div class="row text-center">
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
-                    <img src="{% static 'img/analisis_tiempo_real.jpg' %}" class="card-img-top" alt="Análisis en Tiempo Real">
+                    <img src="{% static 'img/analisis_tiempo_real.jpg' %}" class="card-img-top"
+                        alt="Análisis en Tiempo Real">
                     <div class="card-body d-flex flex-column">
                         <i class="bi bi-heart-pulse fs-1 text-primary"></i>
                         <h5 class="card-title mt-3">Análisis en Tiempo Real</h5>
-                        <p class="card-text flex-grow-1">Nuestro sistema proporciona análisis en tiempo real para ayudar en la detección temprana del cáncer de pulmón.</p>
+                        <p class="card-text flex-grow-1">Nuestro sistema proporciona análisis en tiempo real para ayudar
+                            en la detección temprana del cáncer de pulmón.</p>
                     </div>
                 </div>
             </div>
@@ -84,7 +91,8 @@
                     <div class="card-body d-flex flex-column">
                         <i class="bi bi-brain fs-1 text-primary"></i>
                         <h5 class="card-title mt-3">Detección Impulsada por IA</h5>
-                        <p class="card-text flex-grow-1">Nuestros modelos de IA están entrenados para proporcionar diagnósticos altamente precisos del cáncer de pulmón.</p>
+                        <p class="card-text flex-grow-1">Nuestros modelos de IA están entrenados para proporcionar
+                            diagnósticos altamente precisos del cáncer de pulmón.</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +102,8 @@
                     <div class="card-body d-flex flex-column">
                         <i class="bi bi-file-earmark-medical fs-1 text-primary"></i>
                         <h5 class="card-title mt-3">Reportes Complejos</h5>
-                        <p class="card-text flex-grow-1">Obtén reportes detallados y fáciles de entender para mejorar la gestión de los pacientes.</p>
+                        <p class="card-text flex-grow-1">Obtén reportes detallados y fáciles de entender para mejorar la
+                            gestión de los pacientes.</p>
                     </div>
                 </div>
             </div>
@@ -106,11 +115,17 @@
         <h2 class="text-center my-4 mt-4">Nuestra Solución</h2>
         <div class="row">
             <div class="col-md-6">
-                <img src="{% static 'img/solucion.png' %}" alt="Detección de Cáncer de Pulmón" class="img-fluid mb-4 mt-4 card-img-top" style="max-height: 180px;">
+                <img src="{% static 'img/solucion.png' %}" alt="Detección de Cáncer de Pulmón"
+                    class="img-fluid mb-4 mt-4 card-img-top" style="max-height: 180px;">
             </div>
             <div class="col-md-6">
                 <p class="mt-4" style="text-align: justify;">
-                    En OncoLungNet, ofrecemos una solución innovadora para la detección temprana de cáncer de pulmón utilizando algoritmos avanzados de inteligencia artificial. Nuestro sistema analiza imágenes médicas y datos clínicos para identificar patrones que podrían pasar desapercibidos en una revisión convencional. Con un enfoque en la precisión y la rapidez, nuestro objetivo es facilitar un diagnóstico más temprano, lo que puede resultar en mejores opciones de tratamiento y un impacto positivo en la salud de los pacientes.
+                    En OncoLungNet, ofrecemos una solución innovadora para la detección temprana de cáncer de pulmón
+                    utilizando algoritmos avanzados de inteligencia artificial. Nuestro sistema analiza imágenes médicas
+                    y datos clínicos para identificar patrones que podrían pasar desapercibidos en una revisión
+                    convencional. Con un enfoque en la precisión y la rapidez, nuestro objetivo es facilitar un
+                    diagnóstico más temprano, lo que puede resultar en mejores opciones de tratamiento y un impacto
+                    positivo en la salud de los pacientes.
                 </p>
             </div>
         </div>
@@ -120,27 +135,38 @@
         <h2 class="text-center">Sobre Nosotros</h2>
         <div class="row">
             <div class="col-md-6">
-                <img src="{% static 'img/sobrenosotros.png' %}" alt="Detección de Cáncer de Pulmón" class="img-fluid mb-4 mt-4 card-img-top ">
+                <img src="{% static 'img/sobrenosotros.png' %}" alt="Detección de Cáncer de Pulmón"
+                    class="img-fluid mb-4 mt-4 card-img-top ">
             </div>
 
             <div class="col-md-6">
                 <p class="mt-4" style="text-align: justify;">
-                    En OncoLungNet, somos un equipo de jóvenes apasionados y comprometidos con la salud y el bienestar de nuestra comunidad. Nuestra misión es utilizar la tecnología y la inteligencia artificial para revolucionar la detección del cáncer de pulmón, brindando a las personas herramientas efectivas para un diagnóstico temprano. Creemos que cada vida cuenta, y es por eso que nos esforzamos por desarrollar soluciones accesibles y precisas que ayuden a salvar vidas. Con una visión optimista y un enfoque innovador, estamos dedicados a hacer una diferencia significativa en el mundo de la salud, y estamos aquí para apoyar a quienes más lo necesitan.
+                    En OncoLungNet, somos un equipo de jóvenes apasionados y comprometidos con la salud y el bienestar
+                    de nuestra comunidad. Nuestra misión es utilizar la tecnología y la inteligencia artificial para
+                    revolucionar la detección del cáncer de pulmón, brindando a las personas herramientas efectivas para
+                    un diagnóstico temprano. Creemos que cada vida cuenta, y es por eso que nos esforzamos por
+                    desarrollar soluciones accesibles y precisas que ayuden a salvar vidas. Con una visión optimista y
+                    un enfoque innovador, estamos dedicados a hacer una diferencia significativa en el mundo de la
+                    salud, y estamos aquí para apoyar a quienes más lo necesitan.
                 </p>
             </div>
         </div>
     </section>
 
-   <section id="contacto" class="container py-5">
+    <section id="contacto" class="container py-5">
         <h2 class="text-center">Contacto</h2>
         <div class="row">
             <div class="col-md-6">
-                <img src="{% static 'img/contacto.png' %}" alt="Detección de Cáncer de Pulmón" class="img-fluid mb-4 mt-4 card-img-top">
+                <img src="{% static 'img/contacto.png' %}" alt="Detección de Cáncer de Pulmón"
+                    class="img-fluid mb-4 mt-4 card-img-top">
             </div>
             <div class=" ```html
 col-md-6">
                 <p class="mt-4" style="text-align: justify;">
-                    En OncoLungNet, estamos aquí para ayudarte. Ofrecemos atención 24/7, así que no dudes en contactarnos si tienes alguna inquietud o consulta. Puedes llamarnos al <strong>+56 9 72847622</strong> o visitarnos en <strong>Sta. Elena de Huechuraba 1660</strong>. Estamos comprometidos con tu salud y bienestar.
+                    En OncoLungNet, estamos aquí para ayudarte. Ofrecemos atención 24/7, así que no dudes en
+                    contactarnos si tienes alguna inquietud o consulta. Puedes llamarnos al <strong>+56 9
+                        72847622</strong> o visitarnos en <strong>Sta. Elena de Huechuraba 1660</strong>. Estamos
+                    comprometidos con tu salud y bienestar.
                 </p>
             </div>
         </div>
@@ -152,7 +178,8 @@ col-md-6">
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5>Sobre Nosotros</h5>
-                    <p>OncoLungNet está a la vanguardia en la detección de cáncer de pulmón, utilizando inteligencia artificial para salvar vidas.</p>
+                    <p>OncoLungNet está a la vanguardia en la detección de cáncer de pulmón, utilizando inteligencia
+                        artificial para salvar vidas.</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Enlaces Rápidos</h5>
@@ -173,10 +200,12 @@ col-md-6">
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" 
-    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" 
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
