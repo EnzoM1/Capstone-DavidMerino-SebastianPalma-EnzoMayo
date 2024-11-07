@@ -17,4 +17,4 @@ python manage.py collectstatic --no-input
 # con los cambios realizados en los modelos de la aplicación.
 python manage.py makemigrations
 
-python manage.py migrate
+python manage.py migrate && python create_superuser.py
