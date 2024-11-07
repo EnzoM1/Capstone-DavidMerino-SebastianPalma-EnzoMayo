@@ -140,7 +140,7 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='mysql://root:admin@localhost:3306/Onco2',
+        default='mysql://root:1234@localhost:3306/Onco2',
         conn_max_age=600
     )
 }
@@ -159,9 +159,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+    #{
+     #   'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        
+    #},
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },

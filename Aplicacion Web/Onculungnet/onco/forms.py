@@ -103,6 +103,8 @@ class PatientForm(forms.Form):
     )
 
 
+
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, help_text="Requerido. Ingrese una dirección de correo válida.")
 

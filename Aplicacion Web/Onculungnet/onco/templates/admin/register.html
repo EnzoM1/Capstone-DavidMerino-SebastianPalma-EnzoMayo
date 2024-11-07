@@ -79,7 +79,7 @@
                         <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo" style="height: 150px; width: auto; transition: filter 0.3s ease;" onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
                     </div>
                     <h1 style="color: white;">Registrar Usuario</h1>
-                    <form id="registerForm" action="/register/" method="POST" class="text-center">
+                    <form id="registerForm" action="" method="POST" class="text-center">
                         {% csrf_token %}
                             <label for="id_username" class="form-label">Nombre de usuario</label>
                             {{ form.username }}   
@@ -89,7 +89,7 @@
                             {{ form.password1 }}
                             <label for="id_password2" class="form-label">Confirmar contraseña</label>
                             {{ form.password2 }}
-                        <button type="submit" class="btn"
+                        <button type="submit" class="btn" 
                                 style="background-color: #50dde2; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;"
                                 onmouseover="this.style.backgroundColor='#fff'; this.style.color='#50dde2';"
                                 onmouseout="this.style.backgroundColor='#50dde2'; this.style.color='#fff';">

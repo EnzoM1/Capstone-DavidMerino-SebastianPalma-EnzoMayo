@@ -67,6 +67,20 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         isValid = false;
     }
 
+      // Validación personalizada para contraseñas similares al nombre de usuario
+    if (password1.toLowerCase().includes(username.toLowerCase())) {
+
+        errorMessages += 'La contraseña no puede ser similar al nombre de usuario.\n';
+        isValid = false;
+    }
+
+    // Validación para contraseñas comunes
+    const commonPasswords = ['123456', 'password'];
+    if (commonPasswords.includes(password1)) {
+        errorMessages += 'La contraseña es demasiado común. Por favor, elige una contraseña más segura.\n';
+        isValid = false;
+    }
+
     // Si hay errores, evitar el envío del formulario
     if (!isValid) {
         alert(errorMessages);

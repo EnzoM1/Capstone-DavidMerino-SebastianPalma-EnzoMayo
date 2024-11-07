@@ -11,6 +11,7 @@ from django.db import IntegrityError #simplemente un mensaje de error
 from django.contrib.auth.decorators import login_required #esto protege las urls
 import csv
 import json
+from django.db.models import Count, Avg
 
 
 #imports necesarios para que funcione la view
@@ -35,46 +36,38 @@ def sintomas(request):
 def vistaAdmin(request):
     if request.user.username == 'skibidi':
         pacientes = PatientData.objects.all()
-        
-        # Distribución de Edad de Pacientes
-        edades = [paciente.Edad for paciente in pacientes]
-        
-        # Probabilidad de Cáncer por Género
-        hombres_probabilidad = [
-            float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
-            for p in pacientes if p.Genero == 'H' and p.probability
-        ]
 
-        mujeres_probabilidad = [
-            float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
-            for p in pacientes if p.Genero == 'M' and p.probability
-        ]
+        # 1. Distribución por género con la probabilidad promedio de cáncer
+        genero_data = pacientes.values('Genero').annotate(
+            count=Count('Genero'),
+            avg_probabilidad=Avg('probability')  # Promedio de probabilidad de cáncer por género
+        )
 
-        # Calcular promedio de probabilidad para hombres y mujeres
-        genero_data = [
-            sum(hombres_probabilidad) / len(hombres_probabilidad) if hombres_probabilidad else 0,
-            sum(mujeres_probabilidad) / len(mujeres_probabilidad) if mujeres_probabilidad else 0
-        ]
-        
-        # Distribución de Probabilidad de Cáncer en intervalos
-        probabilidad_data = [0, 0, 0, 0]
-        for p in pacientes:
-            if p.probability:
-                prob = float(p.probability.replace('%', '').strip()) if isinstance(p.probability, str) else float(p.probability)
-                if prob <= 25:
-                    probabilidad_data[0] += 1
-                elif prob <= 50:
-                    probabilidad_data[1] += 1
-                elif prob <= 75:
-                    probabilidad_data[2] += 1
-                else:
-                    probabilidad_data[3] += 1
+        # 2. Promedio de probabilidad de cáncer por edad
+        edad_data = pacientes.values('Edad').annotate(promedio_probabilidad=Avg('probability'))
 
-        # Contexto para la plantilla
+        # 3. Relación entre alcohol y probabilidad
+        alcohol_data = pacientes.values('Consumo_de_alcohol').annotate(promedio_probabilidad=Avg('probability'))
+
+        # 4. Pacientes con tos y su probabilidad
+        tos_probabilidad = pacientes.values('Tos').annotate(promedio_probabilidad=Avg('probability'))
+
+        # Convertir los datos a formato JSON
+        genero_data_json = json.dumps(list(genero_data))
+        edad_data_json = json.dumps(list(edad_data))
+        alcohol_data_json = json.dumps(list(alcohol_data))
+        tos_probabilidad_json = json.dumps(list(tos_probabilidad))
+
+        print(genero_data_json)
+        print(edad_data_json)
+        print(alcohol_data_json)
+        print(tos_probabilidad_json)
+
         context = {
-            'edadData': json.dumps(edades),
-            'generoData': json.dumps(genero_data),
-            'probabilidadData': json.dumps(probabilidad_data)
+            'genero_data': genero_data_json,
+            'edad_data': edad_data_json,
+            'alcohol_data': alcohol_data_json,
+            'tos_probabilidad': tos_probabilidad_json,
         }
 
         return render(request, 'admin/vistaAdmin.html', context)
@@ -85,17 +78,18 @@ def vistaAdmin(request):
 def register(request):
     if request.method == 'GET':
         return render(request, 'admin/register.html', {"form": CustomUserCreationForm()})
+        print("hola")
     else:
-        # Crear una instancia del formulario con los datos POST
         form = CustomUserCreationForm(request.POST)
+        print(form)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            messages.success(request, 'Registro exitoso. Bienvenido.')
+            return redirect('index')  # Verifica que 'index' esté definido en tus URLs
         else:
             messages.error(request, 'El formulario no es válido. Por favor, corrige los errores.')
-            # Si el formulario no es válido, devuelve el formulario con errores
-            return render(request, 'admin/register.html', {"form": form, "error": "Formulario inválido."})
+            return render(request, 'admin/register.html', {"form": form})
 
 
 

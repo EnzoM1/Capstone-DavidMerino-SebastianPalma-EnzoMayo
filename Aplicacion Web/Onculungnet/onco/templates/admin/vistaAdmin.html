@@ -9,24 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        canvas {
-            max-width: 600px;
-            margin: 20px auto;
-        }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-
-        .chart-container {
-            width: 45%;
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body class="bg-light">
@@ -92,23 +77,36 @@
     </div>
 
     <div class="container" style="padding: 20px;">
+        <h2>Dashboard de Pacientes</h2>
+        
         <div class="chart-container">
-            <canvas id="edadChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="probabilidadHistogramaChart"></canvas>
-        </div>
-        <div class="chart-container">
-            <canvas id="generoProbabilidadTortaChart"></canvas>
+            <div class="chart-card">
+                <h3>Distribución por Género</h3>
+                <canvas id="generoChart"></canvas>
+            </div>
+            
+            <div class="chart-card">
+                <h3>Promedio de Probabilidad por Edad</h3>
+                <canvas id="edadChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Relación Consumo de alcohol y Probabilidad</h3>
+                <canvas id="alcoholChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Pacientes con Tos y su Probabilidad</h3>
+                <canvas id="tosChart"></canvas>
+            </div>
         </div>
     </div>
 
-    <script id="edadData" type="application/json">{{ edadData|safe }}</script>
-    <script id="generoData" type="application/json">{{ generoData|safe }}</script>
-    <script id="probabilidadData" type="application/json">{{ probabilidadData|safe }}</script>
-
+    <script>
+        var generoData = {{ genero_data|safe }};
+        var edadData = {{ edad_data|safe }};
+        var alcoholData = {{ alcohol_data|safe }};
+        var tosProbabilidadData = {{ tos_probabilidad|safe }};
+    </script>
     <script src="{% static 'js/dashboard.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
