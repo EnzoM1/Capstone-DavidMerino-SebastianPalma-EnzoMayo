@@ -7,7 +7,7 @@ urlpatterns = [
 
     path('',views.pagina_inicio,name="pagina_inicio"),
 
-    path('index/',views.inicio,name="index"),
+    path('inicioSesion/',views.inicioSesion,name="inicioSesion"),
 
     path('sintomas/',views.sintomas,name="sintomas"),
 

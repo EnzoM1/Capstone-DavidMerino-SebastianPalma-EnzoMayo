@@ -8,7 +8,7 @@ from django.contrib import messages #esto tira los mensajes
 import pandas as pd
 from django.contrib.auth.forms import UserCreationForm #este es un form que trae el django para guardar los users
 from django.db import IntegrityError #simplemente un mensaje de error
-from django.contrib.auth.decorators import login_required #esto protege las urls
+from django.contrib.auth.decorators import login_required, user_passes_test#esto protege las urls
 import csv
 import json
 from django.db.models import Count, Avg
@@ -25,178 +25,142 @@ from django.db.models import Count, Avg
 
 
 
+
+#views mas ordenadas
+
+
+#super user es OncoAdmin clave : admin --mejorar con algun generador
+
+
+
+
+# Función de prueba que verifica si el usuario es un superusuario
+def is_superuser(user):
+    return user.is_superuser
+
+# Vista de inicio de la aplicación
 def pagina_inicio(request):
     return render(request, 'test_index.html')
 
-def sintomas(request):
-    return render(request, 'sintomas.html')
+# Vista de inicio de sesión
+def inicioSesion(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('vistaAdmin' if user.is_superuser else 'form')
+        else:
+            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+    return render(request, 'inicioSesion.html')
 
-
-@login_required
-def vistaAdmin(request):
-    if request.user.username == 'skibidi':
-        pacientes = PatientData.objects.all()
-
-        # 1. Distribución por género con la probabilidad promedio de cáncer
-        genero_data = pacientes.values('Genero').annotate(
-            count=Count('Genero'),
-            avg_probabilidad=Avg('probability')  # Promedio de probabilidad de cáncer por género
-        )
-
-        # 2. Promedio de probabilidad de cáncer por edad
-        edad_data = pacientes.values('Edad').annotate(promedio_probabilidad=Avg('probability'))
-
-        # 3. Relación entre alcohol y probabilidad
-        alcohol_data = pacientes.values('Consumo_de_alcohol').annotate(promedio_probabilidad=Avg('probability'))
-
-        # 4. Pacientes con tos y su probabilidad
-        tos_probabilidad = pacientes.values('Tos').annotate(promedio_probabilidad=Avg('probability'))
-
-        # Convertir los datos a formato JSON
-        genero_data_json = json.dumps(list(genero_data))
-        edad_data_json = json.dumps(list(edad_data))
-        alcohol_data_json = json.dumps(list(alcohol_data))
-        tos_probabilidad_json = json.dumps(list(tos_probabilidad))
-
-        print(genero_data_json)
-        print(edad_data_json)
-        print(alcohol_data_json)
-        print(tos_probabilidad_json)
-
-        context = {
-            'genero_data': genero_data_json,
-            'edad_data': edad_data_json,
-            'alcohol_data': alcohol_data_json,
-            'tos_probabilidad': tos_probabilidad_json,
-        }
-
-        return render(request, 'admin/vistaAdmin.html', context)
-    else:
-        return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
-
-
+# Vista de registro de usuarios
 def register(request):
     if request.method == 'GET':
         return render(request, 'admin/register.html', {"form": CustomUserCreationForm()})
-        print("hola")
     else:
         form = CustomUserCreationForm(request.POST)
-        print(form)
         if form.is_valid():
             user = form.save()
             login(request, user)
             messages.success(request, 'Registro exitoso. Bienvenido.')
-            return redirect('index')  # Verifica que 'index' esté definido en tus URLs
+            return redirect('index')
         else:
             messages.error(request, 'El formulario no es válido. Por favor, corrige los errores.')
             return render(request, 'admin/register.html', {"form": form})
 
+# Vista de cierre de sesión
+@login_required
+def cerrarSesion(request):
+    logout(request)
+    return redirect('pagina_inicio')
 
+# Vista de síntomas (solo para usuarios autenticados)
+@login_required
+def sintomas(request):
+    return render(request, 'sintomas.html')
 
-
-def inicio(request):
-     
-     if request.method == 'POST':
-        # Recoge el nombre de usuario y la contraseña del formulario
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        # Autentica al usuario
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            # Si la autenticación es exitosa, inicia sesión
-            login(request, user)
-             # Verifica si el usuario es el específico
-            if user.username == 'skibidi':  # <----- es el admin
-                return redirect('vistaAdmin')  # Redirige a la vista especial
-            else:
-                return redirect('form')  # Redirige a la página del formulario
-            
-            
-
-        else:
-            # Si las credenciales no son correctas, muestra un error
-            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
-    
-     return render(request, 'index.html')  # Asegúrate de que esta sea tu plantilla de inicio de sesión
-
+# Vista para predecir la probabilidad de cáncer (solo para usuarios autenticados)
 @login_required
 def predict_probability(request):
     if request.method == 'POST':
         form = PatientForm(request.POST)
         if form.is_valid():
             patient_data = form.cleaned_data
-            # Crear un dataframe con los datos del paciente
             patient_df = pd.DataFrame([patient_data])
-            
-            # Seleccionar las características correctas
+
             selected_features = patient_df[['Dedos_amarillos', 'Ansiedad', 'Presión_de_pares', 'Enfermedad_crónica', 
                                             'Fatiga', 'Alergia', 'Sibilancias', 'Consumo_de_alcohol', 
                                             'Tos', 'Dificultad_para_tragar', 'Dolor_en_el_pecho']]
-            
-            # Ajustar los nombres de las columnas para que coincidan con los del modelo entrenado
-            selected_features.columns = selected_features.columns.str.replace(' ', '_')  # Reemplaza espacios por guiones bajos
+            selected_features.columns = selected_features.columns.str.replace(' ', '_')
 
-            # Predecir la probabilidad de cáncer
             probability = lr_model.predict_proba(selected_features)[:, 1][0]
-            
-            # Guardar los datos del paciente en un nuevo modelo y la base de datos
+
             patient_data_obj = PatientData(**patient_data)
-            patient_data_obj.probability = probability  # Save as a decimal (e.g., 0.85)
+            patient_data_obj.probability = probability
             patient_data_obj.save()
-            
-            # Convertir la probabilidad a porcentaje entero para la visualización
+
             probability_percentage = "{}%".format(int(round(probability * 100)))
-            
             return render(request, 'result.html', {'probability': probability_percentage})
     else:
         form = PatientForm()
     return render(request, 'form.html', {'form': form})
 
+# Vista de administración (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
+def vistaAdmin(request):
+    pacientes = PatientData.objects.all()
 
+    genero_data = pacientes.values('Genero').annotate(count=Count('Genero'), avg_probabilidad=Avg('probability'))
+    edad_data = pacientes.values('Edad').annotate(promedio_probabilidad=Avg('probability'))
+    alcohol_data = pacientes.values('Consumo_de_alcohol').annotate(promedio_probabilidad=Avg('probability'))
+    tos_probabilidad = pacientes.values('Tos').annotate(promedio_probabilidad=Avg('probability'))
+
+    context = {
+        'genero_data': json.dumps(list(genero_data)),
+        'edad_data': json.dumps(list(edad_data)),
+        'alcohol_data': json.dumps(list(alcohol_data)),
+        'tos_probabilidad': json.dumps(list(tos_probabilidad)),
+    }
+
+    return render(request, 'admin/vistaAdmin.html', context)
+
+# Vista para listar pacientes (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
 def listar_pacientes(request):
-    # Obtener todos los datos de la tabla
-    patients = PatientData.objects.all()  
+    patients = PatientData.objects.all()
     return render(request, 'admin/listar_pacientes.html', {'patients': patients})
 
+# Vista para descargar datos de pacientes en CSV (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
 def descargar_csv(request):
-    # Crear una respuesta de tipo CSV
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="pacientes.csv"'
-
-    # Crear el escritor CSV
     writer = csv.writer(response)
 
-    # Escribir el encabezado
     writer.writerow([
         'Nombre', 'Edad', 'Género', 'Dedos Amarillos', 'Ansiedad', 'Presión de Pares',
         'Enfermedad Crónica', 'Fatiga', 'Alergia', 'Sibilancias', 'Consumo de Alcohol',
         'Tos', 'Dificultad para Tragar', 'Dolor en el Pecho', 'Probabilidad de Cáncer'
     ])
 
-    # Obtener los datos de los pacientes
     patients = PatientData.objects.all().values_list(
         'Nombre', 'Edad', 'Genero', 'Dedos_amarillos', 'Ansiedad', 'Presión_de_pares', 
         'Enfermedad_crónica', 'Fatiga', 'Alergia', 'Sibilancias', 'Consumo_de_alcohol', 
         'Tos', 'Dificultad_para_tragar', 'Dolor_en_el_pecho', 'probability'
     )
-
-    # Escribir los datos de los pacientes
     for patient in patients:
         writer.writerow(patient)
 
     return response
 
-
-
+# Vistas para restablecimiento de contraseña
 def PasswordResetView(request):
     return render(request, 'PasswordResetView.html')
 
 def PasswordResetConfirmView(request):
     return render(request, 'PasswordResetConfirmView.html')
-
-@login_required
-def cerrarSesion(request):
-    logout(request)
-    return redirect('pagina_inicio')
