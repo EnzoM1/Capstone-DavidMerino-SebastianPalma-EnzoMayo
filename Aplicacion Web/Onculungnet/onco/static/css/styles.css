@@ -7,25 +7,29 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #6e99a6;
-opacity: 0.8;
-background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(225deg, #343a40 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(315deg, #343a4055 25%, transparent 25%) 0px 0/ 26px 26px, linear-gradient(45deg, #343a40 25%, #6e99a6 25%) 0px 0/ 26px 26px;
+    opacity: 0.8;
+    background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(225deg, #343a40 25%, transparent 25%) -13px 0/ 26px 26px, linear-gradient(315deg, #343a4055 25%, transparent 25%) 0px 0/ 26px 26px, linear-gradient(45deg, #343a40 25%, #6e99a6 25%) 0px 0/ 26px 26px;
 }
 
 
 .left-section {
-    background-color: #4d6b74; /* Color 30% más oscuro */
+    background-color: #4d6b74;
+    /* Color 30% más oscuro */
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color: #fff; /* Color para el texto */
-    transition: background-color 0.3s; /* Transición suave para el color de fondo */
+    color: #fff;
+    /* Color para el texto */
+    transition: background-color 0.3s;
+    /* Transición suave para el color de fondo */
 }
 
 .left-section:hover {
-    background-color: #4b4b4b; /* Color gris oscuro al pasar el mouse */
+    background-color: #4b4b4b;
+    /* Color gris oscuro al pasar el mouse */
 }
 
 .left-section h1 {
@@ -34,20 +38,24 @@ background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26p
 }
 
 .left-section p {
-    font-size: 18px; /* Asegura un tamaño de fuente más grande */
-    text-align: justify; /* Justificación del texto */
+    font-size: 18px;
+    /* Asegura un tamaño de fuente más grande */
+    text-align: justify;
+    /* Justificación del texto */
     padding: 20px;
-    font-style: italic; /* Texto en cursiva */
+    font-style: italic;
+    /* Texto en cursiva */
 }
 
 .right-section {
     flex: 1;
-    background-color: rgba(32, 41, 55, 1); /* 30% más oscuro */
+    background-color: rgba(32, 41, 55, 1);
+    /* 30% más oscuro */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    height: 550px;
+    height: auto;
 }
 
 .login-box {
@@ -66,14 +74,17 @@ background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26p
 }
 
 .login-box input {
-    padding: 12px 15px; /* Espaciado interno */
+    padding: 12px 15px;
+    /* Espaciado interno */
     margin-bottom: 15px;
-    border-radius: 5px; /* Bordes redondeados sutiles */
+    border-radius: 5px;
+    /* Bordes redondeados sutiles */
     border: none;
     outline: none;
     background-color: #3b4b61;
     color: #fff;
-    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+    transition: background-color 0.3s, border-color 0.3s;
+    /* Transición suave */
 }
 
 .login-box input::placeholder {
@@ -81,34 +92,43 @@ background: linear-gradient(135deg, #343a4055 25%, transparent 25%) -13px 0/ 26p
 }
 
 .login-box input:hover {
-    background-color: #4a5c76; /* Color más claro al pasar el mouse */
+    background-color: #4a5c76;
+    /* Color más claro al pasar el mouse */
 }
 
 .login-box input:focus {
-    background-color: #2f3c4f; /* Color más oscuro al hacer foco */
+    background-color: #2f3c4f;
+    /* Color más oscuro al hacer foco */
 }
 
 .remember-me {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra la casilla */
+    justify-content: center;
+    /* Centra la casilla */
     color: #fff;
-    margin-bottom: 25px; /* Aumenta el margen para separación */
+    margin-bottom: 25px;
+    /* Aumenta el margen para separación */
 }
 
 button {
     padding: 12px 20px;
     border: none;
-    border-radius: 5px; /* Bordes redondeados sutiles */
-    background-color: #50dde2; /* Color más claro para el botón */
-    color: #fff; /* Cambiar el color del texto a blanco */
+    border-radius: 5px;
+    /* Bordes redondeados sutiles */
+    background-color: #50dde2;
+    /* Color más claro para el botón */
+    color: #fff;
+    /* Cambiar el color del texto a blanco */
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+    width: 100%;
+    /* Asegura que el botón ocupe todo el ancho */
 }
 
 button:hover {
-    background-color: #84c2d3; /* Color más intenso al pasar el mouse */
+    background-color: #84c2d3;
+    /* Color más intenso al pasar el mouse */
 }
 
 .forgot-password {
@@ -132,11 +152,13 @@ button:hover {
 /* Media Queries */
 @media (max-width: 768px) {
     .container {
-        height: auto; /* Ajustar la altura en pantallas pequeñas */
+        height: auto;
+        /* Ajustar la altura en pantallas pequeñas */
     }
 
     .left-section {
-        display: none; /* Ocultar la sección izquierda en dispositivos pequeños */
+        display: none;
+        /* Ocultar la sección izquierda en dispositivos pequeños */
     }
 
     .right-section {
@@ -149,20 +171,51 @@ button:hover {
 }
 
 .texto-elegante {
-    font-style: italic; /* Texto en cursiva */
-    text-align: justify; /* Justificación del texto */
+    font-style: italic;
+    /* Texto en cursiva */
+    text-align: justify;
+    /* Justificación del texto */
     padding: 20px;
-    background-color: #fff; /* Fondo blanco */
-    border: 1px solid #ddd; /* Borde sutil */
+    background-color: #fff;
+    /* Fondo blanco */
+    border: 1px solid #ddd;
+    /* Borde sutil */
     margin: 20px auto;
     width: 80%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra ligera */
 }
 
 .invert-image {
-    transition: filter 0.3s ease; /* Transición suave */
+    transition: filter 0.3s ease;
+    /* Transición suave */
 }
 
 .invert-image:hover {
-    filter: invert(1); /* Invierte los colores */
+    filter: invert(1);
+    /* Invierte los colores */
+}
+
+/* Estilo para el contenedor del icono de mostrar/ocultar contraseña */
+.input-group .input-group-text {
+    background-color: #3b4b61;
+    /* Mismo color de fondo que el campo de contraseña */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 48px;
+}
+
+/* Cambios de color en hover y foco */
+.input-group .input-group-text:hover {
+    background-color: #4a5c76;
+    /* Mismo color que el campo al hacer hover */
+}
+
+.input-group .input-group-text:focus {
+    background-color: #2f3c4f;
+    /* Mismo color que el campo al hacer foco */
 }
