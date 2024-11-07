@@ -138,13 +138,22 @@ WSGI_APPLICATION = 'Onculungnet.wsgi.application'
 # Si no se proporcionan variables de entorno para la base de datos, se utiliza la configuración predeterminada.
 # En este caso: mysql://root:1234@localhost:3306/Onco2
 
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default='mysql://root:1234@localhost:3306/Onco2',
+#        conn_max_age=600
+#    )
+#}
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='mysql://root:1234@localhost:3306/Onco2',
-        conn_max_age=600
+        default=os.environ.get(
+            'DATABASE_URL', 'mysql://root:1234@localhost:3306/Onco2'
+        ),
+        conn_max_age=600,
+        ssl_require=False
     )
 }
-
 
 # default= 'MySQL://USER:PASSWORD@HOST:PORT/NAME',
 #'ENGINE': 'django.db.backends.mysql',
