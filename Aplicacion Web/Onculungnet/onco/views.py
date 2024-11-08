@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseForbidden
 from .models import lr_model, PatientData
 from django.contrib.auth.models import User #es un modelo de usuario que no fue necesario crear porque ya lo tenia
@@ -65,7 +65,7 @@ def register(request):
             user = form.save()
             login(request, user)
             messages.success(request, 'Registro exitoso. Bienvenido.')
-            return redirect('index')
+            return redirect('inicioSesion')
         else:
             messages.error(request, 'El formulario no es válido. Por favor, corrige los errores.')
             return render(request, 'admin/register.html', {"form": form})
@@ -133,6 +133,31 @@ def vistaAdmin(request):
 def listar_pacientes(request):
     patients = PatientData.objects.all()
     return render(request, 'admin/listar_pacientes.html', {'patients': patients})
+
+# Vista para eliminar pacientes (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
+def eliminar_paciente(request, pk):
+    paciente = get_object_or_404(PatientData, pk=pk)
+    paciente.delete()
+    messages.success(request, "Paciente eliminado con éxito.")
+    return redirect('listar_pacientes')
+
+# Vista para listar usuarios (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
+def listar_usuarios(request):
+    usuarios = User.objects.filter(is_superuser=False)  # Filtra para excluir superusuarios
+    return render(request, 'admin/listar_usuarios.html', {'usuarios': usuarios})
+
+# Vista para eliminar usuario (solo para superusuarios)
+@login_required
+@user_passes_test(is_superuser)
+def eliminar_usuario(request, pk):
+    usuario = get_object_or_404(User, pk=pk)
+    usuario.delete()
+    messages.success(request, "Usuario eliminado con éxito.")
+    return redirect('listar_usuarios')
 
 # Vista para descargar datos de pacientes en CSV (solo para superusuarios)
 @login_required

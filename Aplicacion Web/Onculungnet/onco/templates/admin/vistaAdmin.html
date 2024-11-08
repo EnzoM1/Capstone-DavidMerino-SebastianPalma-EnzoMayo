@@ -35,7 +35,7 @@
                         <a class="nav-link" href="{% url 'register' %}"><i class="bi bi-clipboard-data"></i> Registrar nuevo usuario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-telephone"></i> Contactar</a>
+                        <a class="nav-link" href="{% url 'listar_usuarios' %}"><i class="bi bi-telephone"></i>Lista Usuarios</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -63,9 +63,9 @@
             <i class="bi bi-clipboard-data"></i>
             <span class="sidebar-text">Registrar nuevo usuario</span>
         </a>
-        <a href="#" class="d-flex align-items-center">
+        <a href="{% url 'listar_usuarios' %}" class="d-flex align-items-center">
             <i class="bi bi-telephone"></i>
-            <span class="sidebar-text">Contactar</span>
+            <span class="sidebar-text">Lista Usuario</span>
         </a>
 
         {% if user.is_authenticated %}
@@ -75,7 +75,7 @@
         </a>
         {% endif %}
     </div>
-
+    
     <div class="container" style="padding: 20px;">
         <h2>Dashboard de Pacientes</h2>
         

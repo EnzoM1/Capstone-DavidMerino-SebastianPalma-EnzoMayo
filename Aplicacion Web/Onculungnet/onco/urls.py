@@ -31,5 +31,8 @@ urlpatterns = [
     path('vistaAdmin/',views.vistaAdmin, name="vistaAdmin"),
     path('register/',views.register, name="register"),
     path('listar_pacientes/', views.listar_pacientes, name='listar_pacientes'),
+    path('eliminar-paciente/<int:pk>/', views.eliminar_paciente, name='eliminar_paciente'),
+    path('listar_usuarios/', views.listar_usuarios, name='listar_usuarios'),
+    path('eliminar-usuario/<int:pk>/', views.eliminar_usuario, name='eliminar_usuario'),
     path('descargar_csv/', views.descargar_csv, name='descargar_csv'),
 ]
