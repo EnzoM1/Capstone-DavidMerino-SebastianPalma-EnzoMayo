@@ -21,17 +21,32 @@ YES_NO_CHOICES = (
     (None, '--')
 )
 
+GENERO_CHOICES = (
+    ('H', 'Hombre'),
+    ('M', 'Mujer'),
+    ('O', 'Otros'),
+    ('P', 'Prefiero no decirlo'),
+    (None, '--')
+)
+
+
+
 class PatientForm(forms.Form):
     Nombre = forms.CharField(label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    Edad = forms.IntegerField(label='Edad', widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    Edad = forms.IntegerField(label='Edad', 
+                              widget=forms.NumberInput(attrs={'class': 'form-control'}),
+                              min_value= 18, # Edad minima (puede aumentar)
+                              max_value=110,
+                              error_messages={
+                              'min_value': 'La edad no puede ser menor de 18 años.',
+                              'max_value': 'La edad no puede ser mayor de 110 años.',
+                            }) # Edad maxima 
     
     Genero = forms.ChoiceField(
         label='Género',
-        choices=[
-            ('H', 'Hombre'),
-            ('M', 'Mujer'),
-        ],
-        widget=forms.Select(attrs={'class': 'form-select'})  # Asegúrate de que use la clase CSS correspondiente
+        choices=GENERO_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'}),  # Asegúrate de que use la clase CSS correspondiente
+        initial= None
     )
     
     # Usar CheckboxSelectMultiple para mostrar como checkboxes
