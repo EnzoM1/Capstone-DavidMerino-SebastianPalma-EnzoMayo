@@ -18,3 +18,5 @@ python manage.py collectstatic --no-input
 python manage.py makemigrations
 
 python manage.py migrate && python create_superuser.py
+
+pip install -q -U google-generativeai
