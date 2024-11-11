@@ -84,6 +84,8 @@
         <div class="main-content text-center">
             <h1>Probabilidad de cáncer: {{ probability }}</h1>
             <br>
+            <h3>Interpretación Generada:</h3>
+            <p>{{ interpretation }}</p>
             <button class="btn btn-primary mt-3" onclick="location.href='{% url 'form' %}'">Ver reporte</button>
         </div>
     </div>
