@@ -24,11 +24,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link"href="{% url 'form' %}"><i class="bi bi-house-door"></i> Inicio/Formulario</a>
+                        <a class="nav-link" href="{% url 'form' %}"><i class="bi bi-house-door"></i> Inicio/Formulario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sintomas' %}"><i class="bi bi-exclamation-circle"></i>
-                            Síntomas</a>
+                        <a class="nav-link" href="{% url 'sintomas' %}"><i class="bi bi-exclamation-circle"></i> Síntomas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-thermometer"></i> Tratamientos</a>
@@ -38,8 +37,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="/logout"><i class="bi bi-box-arrow-right"></i> Cerrar
-                            sesión</a>
+                        <a class="nav-link text-danger" href="/logout"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -83,12 +81,46 @@
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="form-container bg-white rounded shadow p-4">
                     <h2 class="text-center">Formulario de Síntomas</h2>
-                    <h6 class="text-center">Si tienes dudas respecto a que referencia cada sintoma puedes consultar la sección "Sintomas" en nuestra barra de navegación.</h2>
+                    <h6 class="text-center">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección "Síntomas" en nuestra barra de navegación.</h6>
+
                     <form method="POST" action="{% url 'form' %}">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            {{ form.as_p }}
+
+                        <!-- Tarjeta de Datos Personales -->
+                        <div class="card p-3 mb-3">
+                            <h5 class="card-title">Datos Personales</h5>
+                            <div class="mb-3">
+                                {{ form.Nombre.label_tag }}
+                                {{ form.Nombre }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.Edad.label_tag }}
+                                {{ form.Edad }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.Genero.label_tag }}
+                                {{ form.Genero }}
+                            </div>
                         </div>
+
+                        <!-- Tarjeta de Síntomas -->
+                        <div class="card p-3 mb-3">
+                            <h5 class="card-title">Síntomas</h5>
+                            <div class="row">
+                                <div class="col-6">{{ form.Dedos_amarillos.label_tag }}{{ form.Dedos_amarillos }}</div>
+                                <div class="col-6">{{ form.Ansiedad.label_tag }}{{ form.Ansiedad }}</div>
+                                <div class="col-6">{{ form.Presión_de_pares.label_tag }}{{ form.Presión_de_pares }}</div>
+                                <div class="col-6">{{ form.Enfermedad_crónica.label_tag }}{{ form.Enfermedad_crónica }}</div>
+                                <div class="col-6">{{ form.Fatiga.label_tag }}{{ form.Fatiga }}</div>
+                                <div class="col-6">{{ form.Alergia.label_tag }}{{ form.Alergia }}</div>
+                                <div class="col-6">{{ form.Sibilancias.label_tag }}{{ form.Sibilancias }}</div>
+                                <div class="col-6">{{ form.Consumo_de_alcohol.label_tag }}{{ form.Consumo_de_alcohol }}</div>
+                                <div class="col-6">{{ form.Tos.label_tag }}{{ form.Tos }}</div>
+                                <div class="col-6">{{ form.Dificultad_para_tragar.label_tag }}{{ form.Dificultad_para_tragar }}</div>
+                                <div class="col-6">{{ form.Dolor_en_el_pecho.label_tag }}{{ form.Dolor_en_el_pecho }}</div>
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100">Enviar</button>
                     </form>
                 </div>
