@@ -1,7 +1,10 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
-
+opacity: 0.95;
+background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#2895a8 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #2895a8 2px, #ffffff 2px) -1px 0;
+background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+    color: white; /* Hacer el texto principal blanco */
 }
 
 /* Estilo para el sidebar */
@@ -15,7 +18,6 @@ body {
     background-color: #343a40;
     overflow-x: hidden;
     overflow-y: auto;
-    /* Permitir desplazamiento vertical */
     transition: width 0.5s ease-in-out;
     padding-top: 10px;
 }
@@ -28,7 +30,6 @@ body {
     padding: 10px;
     margin: 0;
     height: 60px;
-    /* Ajustar altura para evitar sobreposiciones */
     font-size: 16px;
     color: white;
     display: flex;
@@ -37,14 +38,11 @@ body {
     text-align: left;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Transición suave */
 }
 
 .sidebar a:hover {
     background-color: #495057;
-    /* Color hover más suave */
     transform: scale(1.05);
-    /* Efecto de escala suave al hover */
 }
 
 .minimize-btn {
@@ -62,9 +60,9 @@ body {
 
 .sidebar.minimized .sidebar-text {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
     width: 0;
     visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .sidebar .sidebar-text {
@@ -124,7 +122,6 @@ body {
 @media (max-width: 768px) {
     .sidebar {
         width: 80px;
-        /* Sidebar más estrecho en pantallas pequeñas */
     }
 
     .sidebar .sidebar-text {
@@ -144,30 +141,22 @@ body {
 /* Estilos generales para formularios */
 .form-container {
     max-width: 600px;
-    /* Ancho máximo del formulario */
     margin: 50px auto;
-    /* Centrar el formulario */
     padding: 20px;
-    /* Espaciado interno */
-    background-color: #fff;
-    /* Color de fondo */
-    border-radius: 8px;
-    /* Bordes redondeados */
+    background-color: #1b3045;
+    border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra */
+    color: #333;
+    opacity: 150%;
 }
 
-/* Estilo para el título del formulario */
 .form-container h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* Estilo para inputs y textarea */
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="number"],
+
 .form-container textarea {
     width: 100%;
     padding: 10px;
@@ -175,6 +164,15 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container input[type="text"]:hover,
+.form-container input[type="email"]:hover,
+.form-container input[type="number"]:hover,
+.form-container textarea:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 /* Estilo para checkboxes */
@@ -186,7 +184,7 @@ body {
 
 .form-check label {
     margin-left: 10px;
-    color: #333;
+    color: white;
 }
 
 .form-check input[type="checkbox"] {
@@ -219,4 +217,5 @@ tr {
     unicode-bidi: isolate;
     border-color: inherit;
     border-radius: 20px;
+    color: white; /* Texto blanco */
 }

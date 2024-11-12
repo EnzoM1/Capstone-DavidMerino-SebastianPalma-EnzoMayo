@@ -79,8 +79,8 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
-                <div class="form-container bg-white rounded shadow p-4">
-                    <h2 class="text-center">Formulario de Síntomas</h2>
+                <div class="form-container rounded shadow p-4" style="color: aliceblue;">
+                    <h2 class="text-center" style="color: aliceblue;"   >Formulario de Síntomas</h2>
                     <h6 class="text-center">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección "Síntomas" en nuestra barra de navegación.</h6>
 
                     <form method="POST" action="{% url 'form' %}">
@@ -93,13 +93,23 @@
                                 {{ form.Nombre.label_tag }}
                                 {{ form.Nombre }}
                             </div>
-                            <div class="mb-3">
-                                {{ form.Edad.label_tag }}
-                                {{ form.Edad }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form.Genero.label_tag }}
-                                {{ form.Genero }}
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex flex-column justify-content-center align-items-left">
+                                        <div>
+                                            {{ form.Edad.label_tag }}
+                                            {{ form.Edad }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <div>
+                                            {{ form.Genero.label_tag }}
+                                            {{ form.Genero }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -121,7 +131,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                        <button type="submit" class="btn btn-secondary w-100">Enviar</button>
                     </form>
                 </div>
             </div>
