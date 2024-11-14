@@ -54,6 +54,9 @@ def is_superuser(user):
 def pagina_inicio(request):
     return render(request, 'test_index.html')
 
+def tratamientos(request):
+    return render(request, 'tratamientos.html')
+
 # Vista de inicio de sesión
 def inicioSesion(request):
     if request.method == 'POST':

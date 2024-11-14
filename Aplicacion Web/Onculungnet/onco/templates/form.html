@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <title>Formulario Síntomas</title>
 </head>
 
 <body class="bg-light">
-    <!-- Navbar (visible en pantallas menores a 760px) -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Menú</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -45,7 +43,7 @@
         </div>
     </nav>
 
-    <!-- Sidebar (visible en pantallas mayores a 760px) -->
+    <!-- Sidebar -->
     <div class="sidebar minimized d-none d-lg-block" id="sidebar">
         <div class="minimize-btn-container">
             <span class="minimize-btn" onclick="toggleSidebar()">⏶</span>
@@ -80,15 +78,15 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="form-container rounded shadow p-4" style="color: aliceblue;">
-                    <h2 class="text-center" style="color: aliceblue;"   >Formulario de Síntomas</h2>
-                    <h6 class="text-center">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección "Síntomas" en nuestra barra de navegación.</h6>
+                    <h2 class="text-center" style="color: #0b2545;">Formulario de Síntomas</h2>
+                    <h6 class="text-center" style="color: #0b2545;">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección "Síntomas" en nuestra barra de navegación.</h6>
 
                     <form method="POST" action="{% url 'form' %}">
                         {% csrf_token %}
 
                         <!-- Tarjeta de Datos Personales -->
                         <div class="card p-3 mb-3">
-                            <h5 class="card-title">Datos Personales</h5>
+                            <h5 class="card-title" style="background-color: #1b3045; color: aliceblue;">Datos Personales</h5>
                             <div class="mb-3">
                                 {{ form.Nombre.label_tag }}
                                 {{ form.Nombre }}
@@ -96,38 +94,41 @@
                             <div class="row">
                                 <div class="col-6 mb-3">
                                     <div class="d-flex flex-column justify-content-center align-items-left">
-                                        <div>
-                                            {{ form.Edad.label_tag }}
-                                            {{ form.Edad }}
-                                        </div>
+                                        {{ form.Edad.label_tag }}
+                                        {{ form.Edad }}
                                     </div>
                                 </div>
                                 <div class="col-6 mb-3">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div>
-                                            {{ form.Genero.label_tag }}
-                                            {{ form.Genero }}
-                                        </div>
+                                        {{ form.Genero.label_tag }}
+                                        {{ form.Genero }}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Tarjeta de Síntomas -->
-                        <div class="card p-3 mb-3">
-                            <h5 class="card-title">Síntomas</h5>
-                            <div class="row">
+                        <!-- Tarjeta de Síntomas Físicos -->
+                        <div class="card p-3 mb-3" >
+                            <h5 class="card-title" style="background-color: #1b3045; color: aliceblue;">Síntomas Físicos</h5>
+                            <div class="row" >
                                 <div class="col-6">{{ form.Dedos_amarillos.label_tag }}{{ form.Dedos_amarillos }}</div>
-                                <div class="col-6">{{ form.Ansiedad.label_tag }}{{ form.Ansiedad }}</div>
-                                <div class="col-6">{{ form.Presión_de_pares.label_tag }}{{ form.Presión_de_pares }}</div>
                                 <div class="col-6">{{ form.Enfermedad_crónica.label_tag }}{{ form.Enfermedad_crónica }}</div>
                                 <div class="col-6">{{ form.Fatiga.label_tag }}{{ form.Fatiga }}</div>
                                 <div class="col-6">{{ form.Alergia.label_tag }}{{ form.Alergia }}</div>
                                 <div class="col-6">{{ form.Sibilancias.label_tag }}{{ form.Sibilancias }}</div>
-                                <div class="col-6">{{ form.Consumo_de_alcohol.label_tag }}{{ form.Consumo_de_alcohol }}</div>
                                 <div class="col-6">{{ form.Tos.label_tag }}{{ form.Tos }}</div>
                                 <div class="col-6">{{ form.Dificultad_para_tragar.label_tag }}{{ form.Dificultad_para_tragar }}</div>
                                 <div class="col-6">{{ form.Dolor_en_el_pecho.label_tag }}{{ form.Dolor_en_el_pecho }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta de Síntomas Psicológicos o Conductuales -->
+                        <div class="card p-3 mb-3">
+                            <h5 class="card-title" style="background-color: #1b3045; color: aliceblue;  " >Síntomas Psicológicos o Conductuales</h5>
+                            <div class="row">
+                                <div class="col-6">{{ form.Consumo_de_alcohol.label_tag }}{{ form.Consumo_de_alcohol }}</div>
+                                <div class="col-6">{{ form.Ansiedad.label_tag }}{{ form.Ansiedad }}</div>
+                                <div class="col-6">{{ form.Presión_de_pares.label_tag }}{{ form.Presión_de_pares }}</div>
                             </div>
                         </div>
 

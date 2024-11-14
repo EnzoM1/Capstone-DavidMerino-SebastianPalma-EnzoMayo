@@ -1,10 +1,9 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-opacity: 0.95;
-background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#2895a8 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #2895a8 2px, #ffffff 2px) -1px 0;
+font-family: 'Arial', sans-serif;
+background-color: #0b2545;
+opacity: 0.97;
+background: radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#d7e9fa 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #d7e9fa 2px, #0b2545 2px) -1px 0;
 background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
-    color: white; /* Hacer el texto principal blanco */
 }
 
 /* Estilo para el sidebar */
@@ -143,68 +142,14 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #1b3045;
+    background-color: #ffffff;;
     border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
+    color: #0b2545;;
     opacity: 150%;
 }
 
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
 
-
-.form-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-container input[type="text"]:hover,
-.form-container input[type="email"]:hover,
-.form-container input[type="number"]:hover,
-.form-container textarea:hover {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-}
-
-/* Estilo para checkboxes */
-.form-check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.form-check label {
-    margin-left: 10px;
-    color: white;
-}
-
-.form-check input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-/* Personalización de checkboxes */
-.form-check-input:checked {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.form-check-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Estilo para los mensajes de error */
 .error-message {
     color: #dc3545;
     font-size: 14px;
@@ -218,4 +163,23 @@ tr {
     border-color: inherit;
     border-radius: 20px;
     color: white; /* Texto blanco */
+}
+
+.form-container input {
+    color: #d7e9fa; /* Azul oscuro */
+    border: 1px solid #676767; 
+    padding: 5px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 5px;
+    background-color: #d7e9fa;
+}
+
+.form-container select {
+    color: #0b2545; /* Azul oscuro */
+    border: 1px solid #676767; 
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    background-color: #d7e9fa; /* Fondo blanco para destacar el texto */
 }
