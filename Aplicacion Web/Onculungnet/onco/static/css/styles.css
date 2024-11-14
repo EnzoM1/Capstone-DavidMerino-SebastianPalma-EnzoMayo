@@ -15,7 +15,7 @@ body {
 
 
 .left-section {
-    background-color: #4d6b74;
+    background-color: #d7e9fa;;
     /* Color 30% más oscuro */
     flex: 1;
     display: flex;
@@ -118,7 +118,7 @@ button {
     border: none;
     border-radius: 5px;
     /* Bordes redondeados sutiles */
-    background-color: #50dde2;
+    background-color: #0b2545;
     /* Color más claro para el botón */
     color: #fff;
     /* Cambiar el color del texto a blanco */
