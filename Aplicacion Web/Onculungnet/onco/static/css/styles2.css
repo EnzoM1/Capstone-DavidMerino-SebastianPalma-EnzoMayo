@@ -166,7 +166,7 @@ tr {
 }
 
 .form-container input {
-    color: #d7e9fa; /* Azul oscuro */
+    color: #0b2545; /* Azul oscuro */
     border: 1px solid #676767; 
     padding: 5px 8px;
     border-radius: 4px;
@@ -182,4 +182,24 @@ tr {
     border-radius: 4px;
     margin-bottom: 5px;
     background-color: #d7e9fa; /* Fondo blanco para destacar el texto */
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    /* Bordes redondeados sutiles */
+    background-color: #50dde2;
+    /* Color más claro para el botón */
+    color: #fff;
+    /* Cambiar el color del texto a blanco */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    /* Asegura que el botón ocupe todo el ancho */
+}
+
+button:hover {
+    background-color: #84c2d3;
+    /* Color más intenso al pasar el mouse */
 }

@@ -1,4 +1,8 @@
 /* Custom Styles */
+body{
+    background-color: #d7e9fa;
+
+}
 .hero-section {
     background-image: url('/static/img/b3.jpg');
     background-size: cover;
@@ -65,6 +69,7 @@
 
 /* Ajustar tamaño de imágenes en las cards */
 .card-img-top {
+    margin-top: 10px;
     width: 100%; /* Asegura que la imagen ocupe todo el ancho de la card */
     height: auto; /* Mantiene la altura automática para que la imagen se ajuste sin recortes */
     max-height: 200px; /* Ajusta la altura máxima que desees */
