@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseForbidden
 from .models import lr_model, PatientData
 from django.contrib.auth.models import User #es un modelo de usuario que no fue necesario crear porque ya lo tenia
 from django.contrib.auth import login, logout, authenticate #temas de autenticacion
-from .forms import PatientForm,CustomUserCreationForm 
+from .forms import PatientForm,CustomUserCreationForm, UserUpdateForm 
 from django.contrib import messages #esto tira los mensajes
 import pandas as pd
 from django.contrib.auth.forms import UserCreationForm #este es un form que trae el django para guardar los users
@@ -249,6 +249,29 @@ def eliminar_usuario(request, pk):
     usuario.delete()
     messages.success(request, "Usuario eliminado con éxito.")
     return redirect('listar_usuarios')
+
+@login_required
+@user_passes_test(is_superuser)
+def modificar_usuario(request, pk):
+    # Obtener el usuario a modificar
+    usuario = get_object_or_404(User, pk=pk)
+
+    # Si el método es POST, procesamos el formulario
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()  # Guardamos los cambios en el usuario
+            messages.success(request, f'Los datos de {usuario.username} han sido actualizados.')
+            return redirect('listar_usuarios')  # Redirige a la lista de usuarios después de la actualización
+        else:
+            # Si hay errores de validación, se mostrará el mensaje
+            messages.error(request, 'Hubo un error al actualizar los datos del usuario.')
+
+    # Si es un GET, mostramos el formulario con los datos actuales
+    else:
+        form = UserUpdateForm(instance=usuario)
+
+    return render(request, 'admin/modificar_usuario.html', {'form': form, 'usuario': usuario})
 
 # Vista para descargar datos de pacientes en CSV (solo para superusuarios)
 @login_required

@@ -130,6 +130,9 @@
                         <td>{{ usuario.email }}</td>
                         <td>{{ usuario.date_joined|date:"d/m/Y" }}</td>
                         <td>
+                            <a href="{% url 'modificar_usuario' usuario.pk %}" class="btn btn-warning">
+                                Modificar
+                            </a>
                             <form action="{% url 'eliminar_usuario' usuario.pk %}" method="post" style="display:inline;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">

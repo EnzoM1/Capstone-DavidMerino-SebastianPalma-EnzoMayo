@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registerStyle.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #343a40;
+            /* Color de fondo ajustado */
+            margin: 0;
+            height: 100vh;
+        }
+
+        .login-container {
+            height: calc(100vh - 50px);
+            /* Ajustar el contenedor de login según el alto del header */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header {
+            height: auto;
+            /* Ajuste automático según el contenido */
+            padding: 0.5rem 0;
+            /* Reducir el padding vertical para ocupar solo el espacio necesario */
+        }
+
+        .form-label {
+            color: white;
+            /* Color de las etiquetas */
+        }
+
+        input {
+            width: 100%;
+            /* Asegura que los inputs ocupen todo el ancho */
+        }
+
+        /* Media query para manejar la sección izquierda en pantallas pequeñas */
+        @media (max-width: 760px) {
+            .left-section {
+                display: none;
+                /* Ocultar la sección izquierda en pantallas pequeñas */
+            }
+
+            .logo {
+                display: block;
+                /* Mostrar el logo en la sección derecha */
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-lg-none">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menú</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'vistaAdmin' %}"><i class="bi bi-house-door"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'listar_pacientes' %}"><i class="bi bi-exclamation-circle"></i>
+                            Lista Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-clipboard-data"></i> Modificar Usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-telephone"></i> Contactar</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="/logout"><i class="bi bi-box-arrow-right"></i> Cerrar
+                            sesión</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar minimized d-none d-lg-block" id="sidebar">
+        <div class="minimize-btn-container">
+            <span class="minimize-btn" onclick="toggleSidebar()">⏶</span>
+        </div>
+        <a href="{% url 'vistaAdmin' %}" class="d-flex align-items-center">
+            <i class="bi bi-house-door"></i>
+            <span class="sidebar-text">Dashboard</span>
+        </a>
+        <a href="{% url 'listar_pacientes' %}" class="d-flex align-items-center">
+            <i class="bi bi-exclamation-circle"></i>
+            <span class="sidebar-text">Lista Pacientes</span>
+        </a>
+        <a href="#" class="d-flex align-items-center">
+            <i class="bi bi-clipboard-data"></i>
+            <span class="sidebar-text">Modificar Usuario</span>
+        </a>
+        <a href="#" class="d-flex align-items-center">
+            <i class="bi bi-telephone"></i>
+            <span class="sidebar-text">Contactar</span>
+        </a>
+
+        {% if user.is_authenticated %}
+        <a href="/logout" class="logout-btn d-flex align-items-center justify-content-center">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="sidebar-text">Cerrar sesión</span>
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Login Container -->
+    <div class="container login-container ">
+        <div class="row w-100 ">
+            <div class="col-md-6 left-section d-none d-md-flex">
+                <div class="logo mb-4">
+                    <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo"
+                        style="height: 200px; width: auto; transition: filter 0.3s ease;"
+                        onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
+                </div>
+            </div>
+            <div class="col-md-6 right-section">
+                <div class="login-box">
+                    <div class="logo mb-4 d-md-none">
+                        <img src="{% static 'img/pulmon_icon2.png' %}" alt="Logo"
+                            style="height: 150px; width: auto; transition: filter 0.3s ease;"
+                            onmouseover="this.style.filter='invert(1)'" onmouseout="this.style.filter='invert(0)'">
+                    </div>
+                    <div class="container">
+                       
+                    <h1 style="color: white;">Modificar Usuario</h1>
+                    <form id="registerForm" action="{% url 'modificar_usuario' usuario.pk %}" method="POST" class="text-center">
+                        {% csrf_token %}
+                        <label for="id_username" class="form-label">Nombre de usuario</label>
+                        {{ form.username }}  <!-- Mostrar el campo de nombre de usuario -->
+                        <label for="id_email" class="form-label">Correo electrónico</label>
+                        {{ form.email }}  <!-- Mostrar el campo de correo electrónico -->
+                        <button type="submit" class="btn"
+                            style="background-color: #50dde2; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;"
+                            onmouseover="this.style.backgroundColor='#fff'; this.style.color='#50dde2';"
+                            onmouseout="this.style.backgroundColor='#50dde2'; this.style.color='#fff';">
+                            Guardar Cambios
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contenedor de mensajes de error -->
+                 <br>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/registerValidacion.js' %}"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("minimized");
+        }
+    </script>
+</body>
+
+</html>

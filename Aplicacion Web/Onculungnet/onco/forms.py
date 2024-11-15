@@ -147,3 +147,29 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+    # Asegurarte de que el nombre de usuario no se quede vacío
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if not username:  # Si username está vacío
+            raise forms.ValidationError('El nombre de usuario es obligatorio.')
+        # Verificar si el nombre de usuario ya está en uso
+        if User.objects.filter(username=username).exclude(id=self.instance.id).exists():
+            raise forms.ValidationError("Este nombre de usuario ya está en uso.")
+        return username
+
+    # Asegurarte de que el correo no se quede vacío
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email:  # Si el email está vacío
+            raise forms.ValidationError('El correo electrónico es obligatorio.')
+        # Verificar si el correo electrónico ya está en uso
+        if User.objects.filter(email=email).exclude(id=self.instance.id).exists():
+            raise forms.ValidationError("Este correo electrónico ya está en uso.")
+        return email
