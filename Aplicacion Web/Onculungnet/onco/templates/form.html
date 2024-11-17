@@ -20,7 +20,7 @@
             <div class="col-lg-6 col-md-8 col-sm-10 col-12">
                 <div class="form-container rounded shadow p-4" style="color: aliceblue;">
                     <h2 class="text-center" style="color: #0b2545;">Formulario de Síntomas</h2>
-                    <h6 class="text-center" style="color: #0b2545;">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección "Síntomas" en nuestra barra de navegación.</h6>
+                    <h6 class="text-center" style="color: #0b2545; text-align: justify;">Si tienes dudas respecto a que referencia cada síntoma puedes consultar la sección <a style="font-weight: bold;" href="{% url 'sintomas' %}">"Sintomas"</a> en nuestra barra de navegación.</h6>
 
                     <form method="POST" action="{% url 'form' %}">
                         {% csrf_token %}
@@ -73,7 +73,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary w-100" style="background-color: #0b2545;">Enviar</button>
+                        <button type="submit" class="btn btn-secondary w-100" style="background-color: #0b2545;"  >Enviar</button>
                     </form>
                 </div>
             </div>

@@ -221,3 +221,18 @@ button:hover {
     background-color: #2f3c4f;
     /* Mismo color que el campo al hacer foco */
 }
+
+.custom-navbar-brand {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    color: #007bff; /* Azul Bootstrap */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s ease; /* Efecto de transición para hover */
+}
+
+.custom-navbar-brand:hover {
+    color: #0056b3; /* Color más oscuro al pasar el cursor */
+    text-decoration: underline; /* Subrayado al hacer hover */
+}

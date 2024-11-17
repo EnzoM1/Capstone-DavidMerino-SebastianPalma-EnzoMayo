@@ -137,3 +137,28 @@ h3 {
         width: 187px;
     }
 }
+.custom-navbar-brand {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    color: #007bff; /* Azul Bootstrap */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s ease; /* Efecto de transición para hover */
+}
+
+.custom-navbar-brand:hover {
+    color: #0056b3; /* Color más oscuro al pasar el cursor */
+    text-decoration: underline; /* Subrayado al hacer hover */
+}
+
+.chart-card {
+    width: 100%; /* Asegura que el gráfico ocupe todo el ancho del contenedor */
+    max-width: 500px; /* Establece un ancho máximo para los gráficos */
+    margin: auto; /* Centra el gráfico */
+}
+
+.chart-card canvas {
+    width: 100% !important; /* Asegura que el canvas ocupe el ancho del contenedor */
+    height: 300px !important; /* Establece una altura fija para los gráficos */
+}

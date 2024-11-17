@@ -203,3 +203,59 @@ button:hover {
     background-color: #84c2d3;
     /* Color más intenso al pasar el mouse */
 }
+.full-opacity {
+    opacity: 1; /* Asegura opacidad al 100% */
+}
+
+.custom-navbar-brand {
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    font-size: 1.5rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    color: #007bff; /* Azul Bootstrap */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s ease; /* Efecto de transición para hover */
+}
+
+.custom-navbar-brand:hover {
+    color: #0056b3; /* Color más oscuro al pasar el cursor */
+    text-decoration: underline; /* Subrayado al hacer hover */
+}
+
+.modern-title {
+    text-align: center; /* Centra el texto */
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+    font-size: 2.8rem; /* Tamaño grande */
+    font-weight: 700; /* Texto fuerte */
+    color: #0b2545; /* Color gris oscuro para el texto */
+    margin: 15px auto; /* Margen automático para centrar */
+    text-transform: capitalize; /* Primera letra en mayúscula */
+    letter-spacing: 1.5px; /* Espaciado sutil entre letras */
+    background-color: #f2f2f2; /* Fondo gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 10px 20px; /* Espaciado interno */
+    display: inline-block; /* Ajusta ancho según contenido */
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
+    border: 2px solid #666; /* Borde gris oscuro */
+  }
+  
+  /* Animación moderna */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .card {
+    /* ... (tu CSS actual para .card) ... */
+    animation: fadeIn 1s ease-out; /* Animación de entrada */
+    border: 2px solid #ff0a0a; /* Borde gris oscuro */
+  }
+  
+  /* Animación moderna */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .card-text{
+  text-align: justify;
+  }
