@@ -14,6 +14,7 @@ import json
 from django.db.models import Count, Avg
 import google.generativeai as genai
 import os
+from django.contrib import messages
 
 
 # instala pip install -q -U google-generativeai
