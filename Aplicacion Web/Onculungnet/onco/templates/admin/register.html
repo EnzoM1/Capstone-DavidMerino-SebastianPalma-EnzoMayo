@@ -83,12 +83,10 @@
                             Lista Pacientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-clipboard-data"></i> Registrar
+                        <a class="nav-link" href="{% url 'register' %}"><i class="bi bi-clipboard-data"></i> Registrar
                             nuevo usuario</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-telephone"></i> Contactar</a>
-                    </li>
+                    
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="/logout"><i class="bi bi-box-arrow-right"></i> Cerrar
@@ -116,10 +114,7 @@
             <i class="bi bi-clipboard-data"></i>
             <span class="sidebar-text">Registrar nuevo usuario</span>
         </a>
-        <a href="#" class="d-flex align-items-center">
-            <i class="bi bi-telephone"></i>
-            <span class="sidebar-text">Contactar</span>
-        </a>
+       
 
         {% if user.is_authenticated %}
         <a href="/logout" class="logout-btn d-flex align-items-center justify-content-center">

@@ -55,6 +55,7 @@ def is_superuser(user):
 def pagina_inicio(request):
     return render(request, 'test_index.html')
 
+@login_required
 def tratamientos(request):
     return render(request, 'tratamientos.html')
 
@@ -72,6 +73,8 @@ def inicioSesion(request):
     return render(request, 'inicioSesion.html')
 
 # Vista de registro de usuarios
+@login_required
+@user_passes_test(is_superuser)
 def register(request):
     if request.method == 'GET':
         return render(request, 'admin/register.html', {"form": CustomUserCreationForm()})
