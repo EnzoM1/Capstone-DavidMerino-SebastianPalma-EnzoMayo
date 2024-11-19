@@ -11,7 +11,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <title>Lista de Pacientes</title>
     <link rel="stylesheet" href="{% static 'css/adminStyle.css' %}">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* Estilo personalizado para la paginación en tonos de gris */
         .pagination .page-item .page-link {
@@ -132,6 +133,11 @@
                         <th><span>Dificultad para Tragar</span></th>
                         <th><span>Dolor en el Pecho</span></th>
                         <th><span>Probabilidad de Cáncer</span></th>
+                        <th>
+                            <form method="get" action="{% url 'descargar_csv' %}">
+                                <button class="bi bi-download" type="submit" > <br>Descargar Data</button>
+                            </form>
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -152,15 +158,13 @@
                         <td>{{ patient.Dificultad_para_tragar }}</td>
                         <td>{{ patient.Dolor_en_el_pecho }}</td>
                         <td>{{ patient.probability|floatformat:5 }} / {{ patient.probability|floatformat:2 }}%</td>
-                        <td></td>
-                        <td>
-                            <form action="{% url 'eliminar_paciente' patient.pk %}" method="post" style="display:inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este paciente?');">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </td>
+                        <td>                            <form id="deleteForm-{{ patient.pk }}" action="{% url 'eliminar_paciente' patient.pk %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ patient.pk }}')">
+                                Eliminar
+                            </button>
+                        </form></td>
+
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -173,10 +177,6 @@
         </nav>
 
         <!-- Botón para descargar CSV -->
-        <form method="get" action="{% url 'descargar_csv' %}">
-            <button class="btn btn-secondary" type="submit">Descargar</button>
-        </form>
-
     </div>
 
     <script src="{% static 'js/listar_pacientes.js' %}"></script>
@@ -247,6 +247,25 @@
             updatePagination();
             showPage(currentPage);
         });
+    </script>
+    <script>
+        function confirmDelete(patientId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás deshacer esta acción.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(`deleteForm-${patientId}`).submit();
+        }
+    });
+}
+
     </script>
 </body>
 
