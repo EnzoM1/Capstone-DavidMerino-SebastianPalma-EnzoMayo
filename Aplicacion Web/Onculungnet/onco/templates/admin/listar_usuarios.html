@@ -138,12 +138,14 @@
     transform: scale(1.05);
 }
 
-.equal-size-button {
-        width: 100px; /* Ajusta este valor según el tamaño deseado */
-        display: inline-block;
-        text-align: center;
-    }
-    
+.btn-custom {
+    width: 120px; /* Define un ancho fijo */
+    display: inline-block;
+    text-align: center;
+    padding: 10px; /* Ajusta el relleno según sea necesario */
+    font-size: 14px; /* Asegura que ambos botones tengan el mismo tamaño de texto */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
     </style>
     
 
@@ -155,7 +157,7 @@
 
     <div class="container card" style="overflow-x: auto; text-align: center; margin-top: 20px;">
         <br>
-        <h1 style="background-color: #0b2545; color: whitesmoke;" >Listar usuarios</h1>
+        <h1 style="background-color: #0b2545; color: whitesmoke;">Listar usuarios</h1>
         <br>
 
         <!-- Campo de búsqueda -->
@@ -177,13 +179,12 @@
                         <td>{{ usuario.email }}</td>
                         <td>{{ usuario.date_joined|date:"d/m/Y" }}</td>
                         <td>
-
-                            <a href="{% url 'modificar_usuario' usuario.pk %}" class="btn btn-warning equal-size-button">
+                            <a href="{% url 'modificar_usuario' usuario.pk %}" class="btn btn-warning btn-custom">
                                 Modificar
                             </a>
-                            <form action="{% url 'eliminar_usuario' usuario.pk %}" method="post" style="display:inline;">
+                            <form action="{% url 'eliminar_usuario' usuario.pk %}" method="post" style="display:inline;" class="delete-form">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-danger equal-size-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+                                <button type="button" class="btn btn-danger btn-custom delete-btn">
                                     Eliminar
                                 </button>
                             </form>
@@ -192,7 +193,6 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
         </div>
 
         <!-- Controles de Paginación -->
@@ -273,6 +273,33 @@
             showPage(currentPage);
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // SweetAlert2 para eliminar usuario
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = this.closest('form');
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'Una vez eliminado, el usuario no podrá ser recuperado.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Envía el formulario para eliminar el usuario
+                    }
+                });
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
