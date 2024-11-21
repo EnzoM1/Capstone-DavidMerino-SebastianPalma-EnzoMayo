@@ -117,10 +117,10 @@ def interpret_probability_with_gemini(probability):
         #temperature=0.7,
     #)
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(f"Un modelo de predicción ha calculado una probabilidad de {probability*100}% para un paciente "
-        "en relación al cáncer de pulmón. Como experto en salud"
-        "en términos de riesgo de cáncer de pulmón? ¿Cuáles son las recomendaciones y qué medidas adicionales se deben tomar?"
-        "que sea breve, solo destacar los mas importante, ya que esto no es un modelo 100% preciso")  
+    response = model.generate_content(f"Con una probabilidad del {probability * 100}% de cáncer de pulmón para un paciente, "
+        "¿cuál es el riesgo asociado y qué recomendaciones se deben seguir? "
+        "Por favor, explica de manera breve y clara, destacando los puntos más importantes, "
+        "teniendo en cuenta que este modelo no es 100% preciso.")  
 
     interpretation = response.text
     return interpretation
@@ -177,10 +177,10 @@ def interpret_graph_data_with_gemini(data):
         #temperature=0.7,
     #)
     model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content(f"Se tienen los siguientes datos sobre las probabilidades de cáncer de pulmón en pacientes: {data_str}. "
-        "Como experto en salud, ¿qué conclusiones puedes sacar de estos datos? "
-        "¿Hay alguna tendencia relevante que deba preocupar a los médicos o pacientes?"
-        "que sea breve solo destacar lo importante")
+    response = model.generate_content(f"Los datos sobre las probabilidades de cáncer de pulmón en pacientes son los siguientes: {data_str}. "
+    "¿Qué conclusiones relevantes puedes extraer de estos datos? "
+    "¿Hay alguna tendencia preocupante para médicos o pacientes? "
+    "Por favor, resalta solo lo más importante y sé breve.")
 
     interpretation = response.text
     return interpretation
