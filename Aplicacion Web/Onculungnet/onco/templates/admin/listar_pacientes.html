@@ -10,160 +10,8 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <title>Lista de Pacientes</title>
-    <link rel="stylesheet" href="{% static 'css/adminStyle.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        /* Estilo personalizado para la paginación en tonos de gris */
-        .pagination .page-item .page-link {
-            color: #6c757d;
-            /* Texto gris */
-            background-color: #f8f9fa;
-            /* Fondo gris claro */
-            border-color: #dee2e6;
-            /* Borde gris */
-        }
-
-        .pagination .page-item.active .page-link {
-            color: #fff;
-            /* Texto blanco */
-            background-color: #6c757d;
-            /* Fondo gris oscuro */
-            border-color: #6c757d;
-            /* Borde gris oscuro */
-        }
-
-        .pagination .page-item .page-link:hover {
-            background-color: #121416;
-            /* Fondo gris un poco más oscuro al pasar el cursor */
-            border-color: #000000;
-        }
-
-        .background-opacity {
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar {
-            width: 250px;
-            background: #343a40;
-            color: white;
-            position: fixed;
-            height: 100%;
-            padding: 20px 10px;
-            overflow-y: auto;
-            transition: width 0.3s;
-        }
-
-        .sidebar.minimized {
-            width: 80px;
-        }
-
-        .sidebar .sidebar-text {
-            margin-left: 10px;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .sidebar.minimized .sidebar-text {
-            display: none;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px 15px;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: #495057;
-        }
-
-        .chart-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .chart-container {
-            flex-grow: 1;
-            margin-bottom: 10px;
-        }
-
-        .chart-container canvas {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .minimize-btn-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .minimize-btn {
-            cursor: pointer;
-            font-size: 18px;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-            }
-
-            .chart-card {
-                margin-bottom: 30px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .chart-card {
-                padding: 15px;
-            }
-
-            .chart-card h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        .logout-btn {
-            background-color: #dc3545;
-            color: white;
-            padding: 4px 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            width: calc(100% - 5px);
-            margin: 0 5px;
-            text-decoration: none;
-            position: absolute;
-            bottom: 10px;
-            left: 3px;
-            font-size: 12px;
-            height: 60px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background-color: #c82333;
-            transform: scale(1.05);
-        }
-    </style>
 
 </head>
 
@@ -296,7 +144,6 @@
                                 </button>
                             </form>
                         </td>
-
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -305,7 +152,17 @@
 
         <!-- Controles de Paginación -->
         <nav aria-label="Paginación de tabla">
-            <ul class="pagination justify-content-center mt-3" id="paginationControls"></ul>
+            <ul class="pagination justify-content-center mt-3" id="paginationControls">
+                <li class="page-item">
+                    <a class="page-link" href="#" onclick="changePage('prev')">Anterior</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="#" id="currentPageLabel">Página 1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" onclick="changePage('next')">Siguiente</a>
+                </li>
+            </ul>
         </nav>
 
         <!-- Botón para descargar CSV -->
@@ -315,109 +172,79 @@
     <script src="{% static 'js/dashboard.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("minimized");
-        }
-    </script>
-
-    <script>
-        const rowsPerPage = 5; // Número de filas por página
+        const rowsPerPage = 10; // Número de filas por página
         let currentPage = 1; // Página inicial
 
-        // Filtrar la tabla
-        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePagination();
+            showPage(currentPage);
 
+            // Conectar la barra de búsqueda
+            document.getElementById('searchInput').addEventListener('input', filterTable);
+        });
+
+        // Función para mostrar las filas de una página específica
+        function showPage(page) {
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const filteredRows = rows.filter(row => row.style.display !== 'none');
+            const start = (page - 1) * rowsPerPage;
+            const end = page * rowsPerPage;
+
+            filteredRows.forEach((row, index) => {
+                row.style.display = (index >= start && index < end) ? '' : 'none';
+            });
+
+            // Actualizar el número de página
+            document.getElementById('currentPageLabel').textContent = `Página ${currentPage}`;
+        }
+
+        // Función para cambiar de página
+        function changePage(direction) {
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const filteredRows = rows.filter(row => row.style.display !== 'none');
+            const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+
+            if (direction === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (direction === 'next' && currentPage < pageCount) {
+                currentPage++;
+            }
+
+            updatePagination();
+            showPage(currentPage);
+        }
+
+        // Función para actualizar los controles de paginación
+        function updatePagination() {
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const filteredRows = rows.filter(row => row.style.display !== 'none');
+            const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+
+            // Mostrar o ocultar los botones de paginación
+            const paginationControls = document.getElementById('paginationControls');
+            paginationControls.querySelectorAll('.page-item').forEach(item => item.classList.remove('active'));
+            const currentPageItem = paginationControls.querySelector('#currentPageLabel');
+            currentPageItem.classList.add('active');
+        }
+
+        // Función para filtrar la tabla según el texto ingresado
         function filterTable() {
             const filter = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#tableBody tr');
 
-            // Filtrar las filas según el texto de búsqueda
             rows.forEach(row => {
                 const cells = Array.from(row.getElementsByTagName('td'));
-                row.style.display = cells.some(cell => cell.textContent.toLowerCase().includes(filter)) ? '' : 'none';
+                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
+                row.style.display = matches ? '' : 'none';
             });
 
-            updatePagination(); // Actualizar la paginación
-            showPage(currentPage); // Volver a mostrar la página actual
-        }
-
-        function showPage(page) {
-            const rows = document.querySelectorAll('#tableBody tr');
-            rows.forEach((row, index) => {
-                row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
-            });
-        }
-
-        function updatePagination() {
-            const rows = document.querySelectorAll('#tableBody tr');
-            const totalRows = Array.from(rows).filter(row => row.style.display !== 'none').length;
-            const pageCount = Math.ceil(totalRows / rowsPerPage);
-
-            const paginationControls = document.getElementById('paginationControls');
-            paginationControls.innerHTML = '';
-
-            // Botón de página anterior
-            if (currentPage > 1) {
-                const prevLi = document.createElement('li');
-                prevLi.className = 'page-item';
-                const prevLink = document.createElement('a');
-                prevLink.className = 'page-link';
-                prevLink.textContent = 'Anterior';
-                prevLink.href = '#';
-                prevLink.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    currentPage--;
-                    updatePagination();
-                    showPage(currentPage);
-                });
-                prevLi.appendChild(prevLink);
-                paginationControls.appendChild(prevLi);
-            }
-
-            // Botones de número de página
-            for (let i = 1; i <= pageCount; i++) {
-                const li = document.createElement('li');
-                li.className = 'page-item' + (i === currentPage ? ' active' : '');
-                const a = document.createElement('a');
-                a.className = 'page-link';
-                a.textContent = i;
-                a.href = '#';
-                a.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    currentPage = i;
-                    showPage(currentPage);
-                    updatePagination();
-                });
-                li.appendChild(a);
-                paginationControls.appendChild(li);
-            }
-
-            // Botón de página siguiente
-            if (currentPage < pageCount) {
-                const nextLi = document.createElement('li');
-                nextLi.className = 'page-item';
-                const nextLink = document.createElement('a');
-                nextLink.className = 'page-link';
-                nextLink.textContent = 'Siguiente';
-                nextLink.href = '#';
-                nextLink.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    currentPage++;
-                    updatePagination();
-                    showPage(currentPage);
-                });
-                nextLi.appendChild(nextLink);
-                paginationControls.appendChild(nextLi);
-            }
-        }
-
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
+            currentPage = 1; // Reiniciar a la primera página después de filtrar
             updatePagination();
             showPage(currentPage);
-        });
+        }
+
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             {% if messages %}

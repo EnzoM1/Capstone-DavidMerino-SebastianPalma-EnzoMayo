@@ -1,9 +1,9 @@
 body {
-font-family: 'Arial', sans-serif;
-background-color: #0b2545;
-opacity: 0.97;
-background: radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#d7e9fa 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #d7e9fa 2px, #0b2545 2px) -1px 0;
-background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+    font-family: 'Arial', sans-serif;
+    background-color: #0b2545;
+    opacity: 0.97;
+    background: radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #0b2545 20%, #0b2545 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#d7e9fa 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #d7e9fa 2px, #0b2545 2px) -1px 0;
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
 }
 
 /* Estilo para el sidebar */
@@ -142,10 +142,12 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff;;
+    background-color: #ffffff;
+    ;
     border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #0b2545;;
+    color: #0b2545;
+    ;
     opacity: 150%;
 }
 
@@ -162,12 +164,14 @@ tr {
     unicode-bidi: isolate;
     border-color: inherit;
     border-radius: 20px;
-    color: white; /* Texto blanco */
+    color: white;
+    /* Texto blanco */
 }
 
 .form-container input {
-    color: #0b2545; /* Azul oscuro */
-    border: 1px solid #676767; 
+    color: #0b2545;
+    /* Azul oscuro */
+    border: 1px solid #676767;
     padding: 5px 8px;
     border-radius: 4px;
     display: inline-block;
@@ -176,12 +180,14 @@ tr {
 }
 
 .form-container select {
-    color: #0b2545; /* Azul oscuro */
-    border: 1px solid #676767; 
+    color: #0b2545;
+    /* Azul oscuro */
+    border: 1px solid #676767;
     padding: 5px 8px;
     border-radius: 4px;
     margin-bottom: 5px;
-    background-color: #d7e9fa; /* Fondo blanco para destacar el texto */
+    background-color: #d7e9fa;
+    /* Fondo blanco para destacar el texto */
 }
 
 button {
@@ -203,59 +209,253 @@ button:hover {
     background-color: #84c2d3;
     /* Color más intenso al pasar el mouse */
 }
+
 .full-opacity {
-    opacity: 1; /* Asegura opacidad al 100% */
+    opacity: 1;
+    /* Asegura opacidad al 100% */
 }
 
 .custom-navbar-brand {
-    font-family: 'Roboto', sans-serif; /* Fuente moderna */
-    font-size: 1.5rem; /* Tamaño de fuente */
-    font-weight: bold; /* Texto en negrita */
-    color: #007bff; /* Azul Bootstrap */
-    text-transform: uppercase; /* Texto en mayúsculas */
-    text-decoration: none; /* Sin subrayado */
-    transition: color 0.3s ease; /* Efecto de transición para hover */
+    font-family: 'Roboto', sans-serif;
+    /* Fuente moderna */
+    font-size: 1.5rem;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Texto en negrita */
+    color: #007bff;
+    /* Azul Bootstrap */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+    text-decoration: none;
+    /* Sin subrayado */
+    transition: color 0.3s ease;
+    /* Efecto de transición para hover */
 }
 
 .custom-navbar-brand:hover {
-    color: #0056b3; /* Color más oscuro al pasar el cursor */
-    text-decoration: underline; /* Subrayado al hacer hover */
+    color: #0056b3;
+    /* Color más oscuro al pasar el cursor */
+    text-decoration: underline;
+    /* Subrayado al hacer hover */
 }
 
 .modern-title {
-    text-align: center; /* Centra el texto */
-    font-family: 'Roboto', sans-serif; /* Fuente moderna */
-    font-size: 2.8rem; /* Tamaño grande */
-    font-weight: 700; /* Texto fuerte */
-    color: #0b2545; /* Color gris oscuro para el texto */
-    margin: 15px auto; /* Margen automático para centrar */
-    text-transform: capitalize; /* Primera letra en mayúscula */
-    letter-spacing: 1.5px; /* Espaciado sutil entre letras */
-    background-color: #f2f2f2; /* Fondo gris claro */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    padding: 10px 20px; /* Espaciado interno */
-    display: inline-block; /* Ajusta ancho según contenido */
-    animation: fadeIn 1s ease-out; /* Animación de entrada */
-    border: 2px solid #666; /* Borde gris oscuro */
-  }
-  
-  /* Animación moderna */
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  .card {
+    text-align: center;
+    /* Centra el texto */
+    font-family: 'Roboto', sans-serif;
+    /* Fuente moderna */
+    font-size: 2.8rem;
+    /* Tamaño grande */
+    font-weight: 700;
+    /* Texto fuerte */
+    color: #0b2545;
+    /* Color gris oscuro para el texto */
+    margin: 15px auto;
+    /* Margen automático para centrar */
+    text-transform: capitalize;
+    /* Primera letra en mayúscula */
+    letter-spacing: 1.5px;
+    /* Espaciado sutil entre letras */
+    background-color: #f2f2f2;
+    /* Fondo gris claro */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    padding: 10px 20px;
+    /* Espaciado interno */
+    display: inline-block;
+    /* Ajusta ancho según contenido */
+    animation: fadeIn 1s ease-out;
+    /* Animación de entrada */
+    border: 2px solid #666;
+    /* Borde gris oscuro */
+}
+
+/* Animación moderna */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
     /* ... (tu CSS actual para .card) ... */
-    animation: fadeIn 1s ease-out; /* Animación de entrada */
-    border: 2px solid #ff0a0a; /* Borde gris oscuro */
-  }
-  
-  /* Animación moderna */
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(-10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  .card-text{
-  text-align: justify;
-  }
+    animation: fadeIn 1s ease-out;
+    /* Animación de entrada */
+    border: 2px solid #ff0a0a;
+    /* Borde gris oscuro */
+}
+
+/* Animación moderna */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-text {
+    text-align: justify;
+}
+
+/* Estilo personalizado para la paginación en tonos de gris */
+.pagination .page-item .page-link {
+    color: #6c757d;
+    /* Texto gris */
+    background-color: #f8f9fa;
+    /* Fondo gris claro */
+    border-color: #dee2e6;
+    /* Borde gris */
+}
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    /* Texto blanco */
+    background-color: #6c757d;
+    /* Fondo gris oscuro */
+    border-color: #6c757d;
+    /* Borde gris oscuro */
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #121416;
+    /* Fondo gris un poco más oscuro al pasar el cursor */
+    border-color: #000000;
+}
+
+.background-opacity {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    width: 250px;
+    background: #343a40;
+    color: white;
+    position: fixed;
+    height: 100%;
+    padding: 20px 10px;
+    overflow-y: auto;
+    transition: width 0.3s;
+}
+
+.sidebar.minimized {
+    width: 80px;
+}
+
+.sidebar .sidebar-text {
+    margin-left: 10px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.sidebar.minimized .sidebar-text {
+    display: none;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background: #495057;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-container {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.minimize-btn-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.minimize-btn {
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .chart-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .chart-card {
+        padding: 15px;
+    }
+
+    .chart-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: calc(100% - 5px);
+    margin: 0 5px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 10px;
+    left: 3px;
+    font-size: 12px;
+    height: 60px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
