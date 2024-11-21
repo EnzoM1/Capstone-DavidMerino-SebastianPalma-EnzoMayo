@@ -39,7 +39,8 @@ from django.contrib import messages
 
 # Configurar la API de OpenAI
 # Configura la clave API de Gemini
-os.environ["GEMINI_API_KEY"] = "AIzaSyDIkyPjiGOslUXJT8wqSwKe8ZHd4bDfamU"
+#API KEY ONCOLUNG AIzaSyDIkyPjiGOslUXJT8wqSwKe8ZHd4bDfamU
+os.environ["GEMINI_API_KEY"] = "AIzaSyAoruK8A06RThddvktywo1iq6DHYubDRxc"
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
