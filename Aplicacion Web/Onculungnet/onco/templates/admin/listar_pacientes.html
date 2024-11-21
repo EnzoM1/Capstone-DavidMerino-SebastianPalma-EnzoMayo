@@ -322,7 +322,7 @@
     </script>
 
     <script>
-        const rowsPerPage = 20; // Número de filas por página
+        const rowsPerPage = 5; // Número de filas por página
         let currentPage = 1; // Página inicial
 
         // Filtrar la tabla
@@ -332,13 +332,14 @@
             const filter = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#tableBody tr');
 
+            // Filtrar las filas según el texto de búsqueda
             rows.forEach(row => {
                 const cells = Array.from(row.getElementsByTagName('td'));
                 row.style.display = cells.some(cell => cell.textContent.toLowerCase().includes(filter)) ? '' : 'none';
             });
 
-            updatePagination();
-            showPage(currentPage);
+            updatePagination(); // Actualizar la paginación
+            showPage(currentPage); // Volver a mostrar la página actual
         }
 
         function showPage(page) {
