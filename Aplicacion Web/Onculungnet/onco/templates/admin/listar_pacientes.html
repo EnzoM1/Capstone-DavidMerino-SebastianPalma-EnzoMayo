@@ -373,6 +373,21 @@
         });
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        icon: '{{ message.tags }}',  // 'success', 'error', etc.
+                        title: '{{ message.tags|capfirst }}',  // Capitalize the first letter
+                        text: '{{ message }}',
+                        timer: 3000,  // Automatically close after 3 seconds
+                        showConfirmButton: false,  // Do not show a confirmation button
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+    <script>
         function confirmDelete(patientId) {
     Swal.fire({
         title: '¿Estás seguro?',

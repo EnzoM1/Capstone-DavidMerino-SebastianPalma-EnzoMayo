@@ -162,27 +162,7 @@
     </div>
 
     <script src="{% static 'js/registerValidacion.js' %}"></script>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("minimized");
-        }
-
-        function showSuccessAlert(event) {
-            event.preventDefault(); // Evita que el formulario se envíe inmediatamente
-            Swal.fire({
-                title: '¡Cambios guardados!',
-                text: 'Los cambios se han realizado con éxito.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Envía el formulario después de cerrar la alerta
-                    event.target.submit();
-                }
-            });
-        }
-    </script>
+    
 </body>
 
 </html>

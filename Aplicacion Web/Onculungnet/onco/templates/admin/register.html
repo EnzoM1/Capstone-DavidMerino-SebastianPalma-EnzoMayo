@@ -108,6 +108,7 @@
         </div>
     </div>
     <script src="{% static 'js/registerValidacion.js' %}"></script>
+    
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
@@ -116,24 +117,7 @@
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevenir el envío del formulario
 
-        // Mostrar SweetAlert de éxito
-        Swal.fire({
-            title: 'Usuario creado con éxito',
-            text: 'Haz clic en "OK" para continuar.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            confirmButtonColor: '#50dde2',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit(); // Enviar el formulario después de cerrar el SweetAlert
-            }
-        });
-    });
-</script>
 </body>
 
 </html>

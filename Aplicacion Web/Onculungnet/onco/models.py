@@ -33,6 +33,8 @@ class PatientData(models.Model):
     Genero = models.CharField(max_length=1, choices=[
         ('H', 'Hombre'),
         ('M', 'Mujer'),
+        ('O', 'Otros'),
+        ('P', 'Prefiero no decirlo'),
     ])
     Dedos_amarillos = models.IntegerField()
     Ansiedad = models.IntegerField()

@@ -68,6 +68,7 @@ def inicioSesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, 'Inicio de sesión exitoso. Bienvenido.')
             return redirect('vistaAdmin' if user.is_superuser else 'form')
         else:
             messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
@@ -83,7 +84,6 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
             messages.success(request, 'Registro exitoso. Bienvenido.')
             return redirect('inicioSesion')
         else:
