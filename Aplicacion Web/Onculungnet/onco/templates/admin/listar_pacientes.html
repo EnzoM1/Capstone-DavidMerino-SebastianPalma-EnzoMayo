@@ -172,76 +172,140 @@
     <script src="{% static 'js/dashboard.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const rowsPerPage = 10; // Número de filas por página
-        let currentPage = 1; // Página inicial
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updatePagination();
-            showPage(currentPage);
-
-            // Conectar la barra de búsqueda
-            document.getElementById('searchInput').addEventListener('input', filterTable);
-        });
-
-        // Función para mostrar las filas de una página específica
-        function showPage(page) {
-            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
-            const filteredRows = rows.filter(row => row.style.display !== 'none');
-            const start = (page - 1) * rowsPerPage;
-            const end = page * rowsPerPage;
-
-            filteredRows.forEach((row, index) => {
-                row.style.display = (index >= start && index < end) ? '' : 'none';
-            });
-
-            // Actualizar el número de página
-            document.getElementById('currentPageLabel').textContent = `Página ${currentPage}`;
-        }
+        const rowsPerPage = 7; // Número de filas por página
+        let currentPage = 1; // Página actual
 
         // Función para cambiar de página
         function changePage(direction) {
             const rows = Array.from(document.querySelectorAll('#tableBody tr'));
-            const filteredRows = rows.filter(row => row.style.display !== 'none');
-            const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+            const filteredRows = rows.filter(row => row.style.display !== 'none'); // Filtrar filas visibles
+
+            const pageCount = Math.ceil(filteredRows.length / rowsPerPage); // Calcular total de páginas visibles
 
             if (direction === 'prev' && currentPage > 1) {
-                currentPage--;
+                currentPage--; // Retroceder
             } else if (direction === 'next' && currentPage < pageCount) {
-                currentPage++;
+                currentPage++; // Avanzar
             }
 
-            updatePagination();
             showPage(currentPage);
+            updatePagination(pageCount); // Actualizar la paginación
         }
 
-        // Función para actualizar los controles de paginación
-        function updatePagination() {
+        // Función para mostrar las filas de la página actual
+        function showPage(page) {
             const rows = Array.from(document.querySelectorAll('#tableBody tr'));
-            const filteredRows = rows.filter(row => row.style.display !== 'none');
-            const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+            const filteredRows = rows.filter(row => row.style.display !== 'none'); // Filtrar filas visibles
 
-            // Mostrar o ocultar los botones de paginación
-            const paginationControls = document.getElementById('paginationControls');
-            paginationControls.querySelectorAll('.page-item').forEach(item => item.classList.remove('active'));
-            const currentPageItem = paginationControls.querySelector('#currentPageLabel');
-            currentPageItem.classList.add('active');
+            const start = (page - 1) * rowsPerPage;
+            const end = page * rowsPerPage;
+
+            // Ocultar todas las filas y luego mostrar las filas correspondientes
+            rows.forEach((row, index) => {
+                row.style.display = (index >= start && index < end && filteredRows.includes(row)) ? '' : 'none';
+            });
         }
 
-        // Función para filtrar la tabla según el texto ingresado
-        function filterTable() {
-            const filter = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('#tableBody tr');
+        // Función para actualizar la paginación
+        function updatePagination(pageCount) {
+            const paginationControls = document.querySelector('.pagination');
+            paginationControls.innerHTML = ''; // Limpiar la paginación actual
+
+            // Botón de página anterior
+            if (currentPage > 1) {
+                const prevLi = document.createElement('li');
+                prevLi.className = 'page-item';
+                const prevLink = document.createElement('a');
+                prevLink.className = 'page-link';
+                prevLink.textContent = 'Anterior';
+                prevLink.href = '#';
+                prevLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    changePage('prev');
+                });
+                prevLi.appendChild(prevLink);
+                paginationControls.appendChild(prevLi);
+            }
+
+            // Definir el rango de botones a mostrar (máximo 5 páginas)
+            let startPage = Math.max(1, currentPage - 2); // Mínimo, página 1
+            let endPage = Math.min(pageCount, currentPage + 2); // Máximo, última página
+
+            // Si hay más de 5 páginas, ajustamos el rango para que muestre 5 páginas
+            if (pageCount > 5) {
+                if (currentPage < 3) {
+                    endPage = Math.min(5, pageCount); // Mostrar primeras 5 si estamos en las primeras páginas
+                } else if (currentPage > pageCount - 3) {
+                    startPage = Math.max(pageCount - 4, 1); // Mostrar últimas 5 si estamos cerca del final
+                }
+            }
+
+            // Botones de número de página
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                li.className = 'page-item' + (i === currentPage ? ' active' : ''); // Agregar clase active a la página actual
+
+                const a = document.createElement('a');
+                a.className = 'page-link';
+                a.textContent = i;
+                a.href = '#';
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    showPage(currentPage);
+                    updatePagination(pageCount);
+                });
+
+                li.appendChild(a);
+                paginationControls.appendChild(li);
+            }
+
+            // Botón de página siguiente
+            if (currentPage < pageCount) {
+                const nextLi = document.createElement('li');
+                nextLi.className = 'page-item';
+                const nextLink = document.createElement('a');
+                nextLink.className = 'page-link';
+                nextLink.textContent = 'Siguiente';
+                nextLink.href = '#';
+                nextLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    changePage('next');
+                });
+                nextLi.appendChild(nextLink);
+                paginationControls.appendChild(nextLi);
+            }
+        }
+
+        // Función para manejar la búsqueda (no activa por ahora, solo filtrado de páginas)
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
 
             rows.forEach(row => {
-                const cells = Array.from(row.getElementsByTagName('td'));
-                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(filter));
-                row.style.display = matches ? '' : 'none';
+                const cells = row.querySelectorAll('td');
+                const isMatch = Array.from(cells).some(cell =>
+                    cell.textContent.toLowerCase().includes(searchTerm)
+                );
+
+                row.style.display = isMatch ? '' : 'none'; // Mostrar u ocultar filas según el término de búsqueda
             });
 
-            currentPage = 1; // Reiniciar a la primera página después de filtrar
-            updatePagination();
-            showPage(currentPage);
+            updatePagination(Math.ceil(rows.length / rowsPerPage)); // Actualizar la paginación después de buscar
+            showPage(currentPage); // Mostrar la página correspondiente
         }
+
+        // Manejar la búsqueda de texto (puedes desactivarlo por ahora)
+        document.getElementById('searchInput').addEventListener('input', handleSearch);
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', () => {
+            const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+            const pageCount = Math.ceil(rows.length / rowsPerPage);
+            showPage(currentPage); // Mostrar las filas de la primera página
+            updatePagination(pageCount); // Inicializar la paginación
+        });
+
 
     </script>
 
