@@ -17,81 +17,80 @@
     {% include 'includes/navbar.html' %}
 
     <!-- Cards con los tratamientos -->
-    <div class="container my-5" style="text-align: center;">
-        <h1 class="modern-title text-center" >Tratamientos contra el Cáncer de Pulmón</h1>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+<div class="container my-5 card" style="text-align: center;">
+    <h1 class="modern-title text-center">Tratamientos contra el Cáncer de Pulmón</h1>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
 
-            <div class="col">
-                <div class="card h-100">
-                    <!-- Imagen de la tarjeta -->
-                    <!-- Reemplazar aquí con la ruta de la imagen deseada -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="d-flex justify-content-center align-items-center" style="height: 160px;">
                     <img src="{% static 'img/quimioterapia.png' %}" class="card-img-top" alt="Quimioterapia"
-                        style="height: 150px; width: 150px; margin-left: 60px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Quimioterapia</h5>
-                        <p class="card-text">La quimioterapia utiliza medicamentos para destruir las células
-                            cancerosas y detener su crecimiento en el cuerpo.</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                    </div>
+                        style="height: 150px; width: auto;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Quimioterapia</h5>
+                    <p class="card-text">La quimioterapia utiliza medicamentos para destruir las células
+                        cancerosas y detener su crecimiento en el cuerpo.</p>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary" onclick="showAlert('Quimioterapia')">Ver detalles</button>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="card h-100">
-                    <!-- Imagen de la tarjeta -->
-                    <!-- Reemplazar aquí con la ruta de la imagen deseada -->
-                    <img src="{% static 'img/radioterapia.png' %}" class="card-img-top" alt="Radioterapia"
-                        style="height: 150px; width: 150px; margin-left: 60px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Radioterapia</h5>
-                        <p class="card-text">La radioterapia utiliza radiación para destruir células cancerosas y reducir
-                            los tumores en los pulmones.</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100">
-                    <!-- Imagen de la tarjeta -->
-                    <!-- Reemplazar aquí con la ruta de la imagen deseada -->
-                    <img src="{% static 'img/inmunoterapia.png' %}" class="card-img-top" alt="Inmunoterapia"
-                        style="height: 150px; width: 150px; margin-left: 60px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Inmunoterapia</h5>
-                        <p class="card-text">La inmunoterapia ayuda al sistema inmunológico del cuerpo a combatir el
-                            cáncer al reforzar sus defensas.</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100">
-                    <!-- Imagen de la tarjeta -->
-                    <!-- Reemplazar aquí con la ruta de la imagen deseada -->
-                    <img src="{% static 'img/terapias_dirigidas.png' %}" class="card-img-top" alt="Terapias Dirigidas"
-                        style="height: 150px; width: 150px; margin-left: 60px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Terapias Dirigidas</h5>
-                        <p class="card-text">Estas terapias atacan proteínas específicas de las células cancerosas,
-                            impidiendo su crecimiento y diseminación.</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
 
+        <div class="col">
+            <div class="card h-100">
+                <div class="d-flex justify-content-center align-items-center" style="height: 160px;">
+                    <img src="{% static 'img/radioterapia.png' %}" class="card-img-top" alt="Radioterapia"
+                        style="height: 150px; width: auto;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Radioterapia</h5>
+                    <p class="card-text">La radioterapia utiliza radiación para destruir células cancerosas y reducir
+                        los tumores en los pulmones.</p>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary" onclick="showAlert('Radioterapia')">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <div class="d-flex justify-content-center align-items-center" style="height: 160px;">
+                    <img src="{% static 'img/inmunoterapia.png' %}" class="card-img-top" alt="Inmunoterapia"
+                        style="height: 150px; width: auto;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Inmunoterapia</h5>
+                    <p class="card-text">La inmunoterapia ayuda al sistema inmunológico del cuerpo a combatir el
+                        cáncer al reforzar sus defensas.</p>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary" onclick="showAlert('Inmunoterapia')">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <div class="d-flex justify-content-center align-items-center" style="height: 160px;">
+                    <img src="{% static 'img/terapias_dirigidas.png' %}" class="card-img-top" alt="Terapias Dirigidas"
+                        style="height: 150px; width: auto;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Terapias Dirigidas</h5>
+                    <p class="card-text">Estas terapias atacan proteínas específicas de las células cancerosas,
+                        impidiendo su crecimiento y diseminación.</p>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary" onclick="showAlert('Terapias Dirigidas')">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function toggleSidebar() {
@@ -99,6 +98,30 @@
             sidebar.classList.toggle("minimized");
         }
     </script>
+
+<script>
+    function showAlert(treatment) {
+        let descriptions = {
+    "Quimioterapia": "La quimioterapia es un tratamiento que utiliza medicamentos para destruir las células cancerosas y detener su propagación a otras partes del cuerpo. Se recomienda su uso cuando el cáncer se ha diseminado ampliamente o cuando otros tratamientos, como la cirugía o la radioterapia, no son suficientes para controlar la enfermedad. También puede emplearse antes de una operación para reducir el tamaño del tumor o después de esta para prevenir recaídas.",
+    
+    "Radioterapia": "La radioterapia emplea rayos de alta energía, como rayos X o protones, para reducir tumores y eliminar células cancerosas en áreas específicas del cuerpo. Es especialmente útil en etapas tempranas del cáncer de pulmón o para aliviar síntomas en casos avanzados. También se recomienda cuando el tumor está localizado y no es posible extirparlo quirúrgicamente, o para tratar metástasis en áreas como el cerebro o los huesos.",
+    
+    "Inmunoterapia": "La inmunoterapia refuerza el sistema inmunológico del cuerpo para ayudar a combatir el cáncer de manera más efectiva al activar las defensas naturales del organismo. Este tratamiento se recomienda principalmente en casos de cáncer de pulmón avanzado o metastásico que no responden bien a la quimioterapia o a la radioterapia. También se utiliza cuando existen mutaciones específicas que pueden ser atacadas mediante terapias inmunológicas.",
+    
+    "Terapias Dirigidas": "Estas terapias atacan proteínas específicas o mutaciones en las células cancerosas para detener su crecimiento y evitar su diseminación. Son altamente efectivas en pacientes con ciertas mutaciones genéticas, como las relacionadas con EGFR o ALK. Se recomiendan en casos de cáncer de pulmón no microcítico avanzado o metastásico, especialmente cuando las pruebas genéticas identifican características que pueden responder bien a estos tratamientos."
+};
+
+Swal.fire({
+    title: treatment,
+    html: `<div style="text-align: justify;">${descriptions[treatment]}</div>`,
+    icon: "info",
+    confirmButtonText: "OK",
+    confirmButtonColor: "#3085d6",
+    background: "#f8f9fa"
+});
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
