@@ -51,6 +51,12 @@ genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 # Función de prueba que verifica si el usuario es un superusuario
 def is_superuser(user):
     return user.is_superuser
+def is_superuser(user):
+    return user.is_superuser
+def is_superuser(user):
+    return user.is_superuser
+def is_superuser(user):
+    return user.is_superuser
 
 # Vista de inicio de la aplicación
 def pagina_inicio(request):
